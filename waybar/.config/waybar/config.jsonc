@@ -1,0 +1,186 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "mode": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    // "height": 40, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    // "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "custom/vpn", "network", "battery", "pulseaudio#microphone", "pulseaudio", "backlight"],
+    // Modules configuration
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{icon} {windows}",
+        "format-window-separator": " ",
+	    "window-rewrite-default": " ",
+	    "window-rewrite": {
+	      "title<.*youtube.*>": " ",
+	      "title<.*amazon.*>": " ",
+          "title<.*reddit.*>": " ",
+          "title<.*Picture-in-Picture.*>": " ",
+	      "class<firefox>": " ",
+          "class<kitty>": " ",
+          "class<konsole>": " ",
+          "class<thunar>": "󰝰 ",
+          "class<discord>": " ",
+          "class<subl>": "󰅳 ",
+          "class<celluloid>": " ",
+          "class<Cider>": "󰎆 ",
+          "class<code-oss>": "󰨞 ",
+          "class<codeblocks>": "󰅩 ",
+          "class<org.larusstone.qtspim>": " ",
+          "class<libreoffice-writer>": " ",
+          "class<libreoffice-startcenter>": "󰏆 ",
+		  "class<mpv>": " "
+	    }   
+    },
+    "hyprland/window": {
+        "format": "{class}",
+	    "separate-outputs": true
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "format": "󰣇  {:%H:%M}",
+        "format-alt": "{:%A  |  %H:%M  |  %e %B}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": [" ", "", " "]
+    },
+    "backlight": {
+        "device": "acpi_video0",
+        "format": "{percent}%  {icon} ",
+	    "format-icons": ["󰛩", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+        "on-scroll-up": "brightnessctl --device=acpi_video0 set 1%+",
+        "on-scroll-down": "brightnessctl --device=acpi_video0 set 1%-",
+        "on-click": "brightnessctl --device-acpi_video0 set 50",
+        "min-length": 6,
+        "scroll-step": 0.5,
+        "reverse-scrolling": true,
+        "tooltip": false
+    },
+    "battery": {
+        "bat": "BAT0",
+	    "states": {
+            "good": 85,
+            "warning": 40,
+            "critical": 20
+        },
+        "format": "{capacity}%  {icon}",
+        "format-charging": "{capacity}%  󰂄",
+        "format-plugged": "{capacity}% 󰚥",
+        "format-alt": "{time}  {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{icon}   {signalStrength}%",
+        "format-ethernet": "󰈀  Ethernet",
+        "tooltip": false,
+        "format-linked": "󰤭  {ifname} | No IP",
+        "format-disconnected": "󰤭   Disconnected",
+        "format-alt": "{icon}   {essid} | {ipaddr}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+	    "on-click-right": "kitty nmtui"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}  {volume}%",
+        "format-bluetooth": "{icon}  {volume}%",
+        "format-bluetooth-muted": "󰟎   Mute",
+        "format-muted": "󰝟  Mute",
+        "format-icons": {
+            "headphone": "󰋋 ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": ["󰕿", "󰖀", "󰖀", "󰕾"]
+        },
+        "on-click": "pamixer -t",
+        "on-click-right": "pwvucontrol",
+        "on-scroll-up": "pamixer -i 1",
+        "on-scroll-down": "pamixer -d 1",
+        "reverse-scrolling": true,
+        "scroll-step": 0.5
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "  {volume}%",
+        "format-source-muted": "",
+        "on-click": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 2",
+        "on-scroll-down": "pamixer --default-source -d 2",
+        "scroll-step": 2,
+        "tooltip": false
+    },
+    "custom/weather" : {
+        // shows the current weather and forecast
+        "tooltip" : true,
+        "format" : "{}",
+        "interval" : 30,
+        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type" : "json"
+    },
+
+    "custom/vpn": {
+        "format": "VPN ",
+        "exec": "echo '{\"class\": \"connected\"}'",
+        "exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
+        "return-type": "json",
+        "interval": 5
+    },
+}
+
