@@ -1,0 +1,13 @@
+{
+  "chromiumSwitches": {},
+  "IS_MAXIMIZED": false,
+  "IS_MINIMIZED": false,
+  "WINDOW_BOUNDS": {
+    "x": 4488,
+    "y": 80,
+    "width": 1908,
+    "height": 1026
+  },
+  "DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING": true,
+  "SKIP_HOST_UPDATE": true
+}
