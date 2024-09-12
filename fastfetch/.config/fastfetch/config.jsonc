@@ -1,0 +1,36 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+  	"type": "kitty-direct",
+	"source": "~/Pictures/Assets/arch-logo.png"
+  },
+  "display": {
+	  "disableLineWrap": "true",
+	  "separator": "  ",
+	  "color": "blue" 
+	  
+  },
+  "modules": [
+	"title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+	"localip",
+	"publicip",
+    "packages",
+    "shell",
+    "display",
+    "wm",
+    "terminal",
+    "cpu",
+    "gpu",
+    "memory",
+    "battery",
+    "poweradapter",
+    "locale",
+    "break",
+    "colors"
+  ]
+}
