@@ -193,5 +193,10 @@ for dir in */; do
     dir="${dir%/}"
     #echo "Stow command: stow $dir"
     stow $dir
+    if [ $? -eq 0 ]; then
+      echo -e "\033[32mSuccessfully stowed '$dir'.\033[0m"
+    else
+      echo -e "\033[31mStow failed. Please manually run 'stow $dir'.\033[0m"
+    fi
   fi
 done

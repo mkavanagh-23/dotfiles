@@ -26,19 +26,19 @@ pacman -S stow
 First, check out the dotfiles repo in your $HOME directory using git:
 
 ```
-$ git clone git@github.com:mkavanagh-23/dotfiles.git ~/.dotfiles
-$ cd ~/.dotfiles
+git clone git@github.com:mkavanagh-23/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 ```
 
 Now you can install all files and dependencies by executing the install script
 
 ```
-$ chmod +x install.sh 
-$ ./install.sh 
+chmod +x install.sh 
+./install.sh 
 ```
 
 Or use GNU stow to create symlinks to your home directory on a per package basis:
 
 ```
-$ stow <pkgname>
+stow <pkgname>
 ```
