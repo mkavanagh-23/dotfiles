@@ -62,17 +62,21 @@ aur_depends=(
 )
 
 echo "Checking for dependencies..."
+pacman_missing=()
 pacman_install=" "
+# check for pacman dependencies
 for pkg in "${pacman_depends[@]}"; do
   sleep 0.2
   if pacman -Qq "$pkg" &> /dev/null; then
     echo -e "\033[32m$pkg is installed. Skipping...\033[0m"
   else
     echo -e "\033[33m$pkg is not installed.\033[0m"
-    pacman_install+="$pkg "
+    pacman_missing+=("$pkg")
   fi
 done
 
+# check for AUR dependencies
+aur_missing=()
 aur_install=" "
 for pkg in "${aur_depends[@]}"; do
   sleep 0.2
@@ -80,23 +84,37 @@ for pkg in "${aur_depends[@]}"; do
     echo -e "\033[32m$pkg is installed. Skipping...\033[0m"
   else
     echo -e "\033[33m$pkg is not installed.\033[0m"
-    aur_install+="$pkg "
+    aur_missing+=("$pkg")
   fi
 done
 
 echo ""
 
-if [[ -z "$pacman_install" ]]; then
+#install missing pacman packages
+pacman_skipped=" "
+if [ ${#pacman_missing[@]} -gt 0 ]; then
   echo "Installing pacman dependencies..."
-  #echo "pacman command: 'sudo pacman -S $pacman_install'"
-  sudo pacman -S $pacman_install
-  # Check to see if pacman install was successful
-  if [ $? -eq 0 ]; then
-    echo "Pacman dependencies installed successfully. Installing AUR dependencies..."
-  else
-    echo -e "\033[31mPacman installation failed. Please see pacman log for more info and try again.\033[0m"
-    echo "Needed packages: $pacman_install"
-    exit 1
+  for pkg in "${pacman_missing[@]}"; do
+    sleep 0.2
+    read -p "Install $pkg? (Y/n): " choice
+    if [[ "$choice" == "n" ]]; then
+      pacman_skipped+="$pkg ";
+      echo "Not installing $pkg. (Note: this may break config)"
+    else
+      pacman_install+="$pkg "
+    fi
+  done
+  if [[ -z "$pacman_install" ]]; then
+    #echo "pacman command: 'sudo pacman -S $pacman_install'"
+    sudo pacman -S $pacman_install
+    # Check to see if pacman install was successful
+    if [ $? -eq 0 ]; then
+      echo "Pacman dependencies installed successfully. Installing AUR dependencies..."
+    else
+      echo -e "\033[31mPacman installation failed. Please see pacman log for more info and try again.\033[0m"
+      echo "Needed packages: $pacman_install"
+      echo "Please install manually"
+    fi
   fi
 else
   echo "All pacman dependencies installed."
@@ -104,7 +122,8 @@ fi
 
 echo ""
 
-if [[ -z "$aur_install" ]]; then
+aur_skipped=" "
+if [ ${#aur_missing[@]} -gt 0 ]; then
   #Check if an AUR helper is installed
   command_exists() {
     command -v "$1" >/dev/null 2>&1
@@ -139,6 +158,7 @@ if [[ -z "$aur_install" ]]; then
     echo "Success: paru is installed."
   else
     # Neither yay nor paru is installed
+    install_choice=""
     while true; do
       read -p "Neither yay nor paru is installed. Would you like to install one? (y/n): " install_choice
       if [[ "$install_choice" == "y" ]]; then
@@ -152,34 +172,56 @@ if [[ -z "$aur_install" ]]; then
           fi
       else
         echo -e "\033[31mIf you do not wish to use an AUR helper you must ensure the following packages are installed, then re-run the script.\033[0m"
-        echo "AUR dependencies: $aur_install"
-        exit 1
+        for pkg in "${aur_missing[@]}"; do
+          aur_skipped+="$pkg "
+        done
       fi
     done
 
-    echo "Installing '$selected_manager'..."
-    #echo "Installation command: sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/$selected_manager.git && cd $selected_manager && makepkg -si"
-    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/$selected_manager.git && cd $selected_manager && makepkg -si
-    if [ $? -eq 0 ]; then
-      echo "$selected_manager installation success! Removing temporary build files..."
-      cd .. && rm -rf $selected_manager
-    else
-      echo -e "\033[31m$selected_manager installation failed. Please install an AUR helper (yay/paru) and re-run the script.\033[0m"
-      exit 1
+    if [[ "$install_choice" == "y" ]]; then
+      echo "Installing '$selected_manager'..."
+      #echo "Installation command: sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/$selected_manager.git && cd $selected_manager && makepkg -si"
+      sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/$selected_manager.git && cd $selected_manager && makepkg -si
+      if [ $? -eq 0 ]; then
+        echo "$selected_manager installation success! Removing temporary build files..."
+        cd .. && rm -rf $selected_manager
+      else
+        echo -e "\033[31m$selected_manager installation failed. Please install an AUR helper (yay/paru) and re-run the script.\033[0m"
+      fi
     fi
   fi
   
-  echo "Installing AUR dependencies with $selected_manager..."
-  $selected_manager -S $aur_install
-  if [ $? -eq 0 ]; then
-    echo "$selected_manager dependencies installed successfully."
+  yay_installed=$(command_exists yay && echo "yay")
+  paru_installed=$(command_exists paru && echo "paru")
+
+  # install AUR dependencies
+  if [ -n "$yay_installed" ] || [ -n "$paru_installed" ]; then
+    echo "Installing AUR dependencies with $selected_manager..."
+    for pkg in "${aur_missing[@]}"; do
+      sleep 0.2
+      read -p "Install $pkg? (Y/n): " choice
+      if [[ "$choice" == "n" ]]; then
+        aur_skipped+="$pkg ";
+        echo "Not installing $pkg. (Note: this may break config)"
+      else
+        aur_install+="$pkg "
+      fi
+    done
+    if [[ -z "$aur_install" ]]; then
+      #echo "pacman command: 'sudo pacman -S $pacman_install'"
+      $selected_manager -S $aur_install
+      # Check to see if pacman install was successful
+      if [ $? -eq 0 ]; then
+        echo "AUR dependencies installed successfully. Linking files..."
+      else
+        echo -e "\033[31mPacman installation failed. Please see pacman log for more info and try again.\033[0m"
+        echo "Needed packages: $aur_install"
+        echo "Please install manually"
+      fi
+    fi
   else
-    echo -e "\033[31m$selected_manager installation failed. Please see $selected_manager log for more info and try again.\033[0m"
-    echo "Needed packages: $aur_install"
-    exit 1
+    echo "All AUR dependencies installed. Linking files..."
   fi
-else
-  echo "All AUR dependencies installed."
 fi
 
 echo ""
@@ -200,3 +242,15 @@ for dir in */; do
     fi
   fi
 done
+
+echo "Install complete. Please review console output for errors."
+
+if [[ -z "$pacman_skipped" ]]; then
+  echo "Missing pacman dependencies: $pacman_skipped"
+fi
+
+if [[ -z "$aur_skipped" ]]; then
+  echo "Missing AUR dependencies: $aur_skipped"
+fi
+
+
