@@ -61,46 +61,50 @@ aur_depends=(
   "wlogout"
 )
 
-pacman_install=""
 echo "Checking for dependencies..."
+pacman_install=" "
 for pkg in "${pacman_depends[@]}"; do
   sleep 0.2
   if pacman -Qq "$pkg" &> /dev/null; then
-    echo "$pkg is installed. Skipping..."
+    echo -e "\033[32m$pkg is installed. Skipping...\033[0m"
   else
-    echo "$pkg is not installed."
+    echo -e "\033[33m$pkg is not installed.\033[0m"
     pacman_install+="$pkg "
   fi
 done
 
-aur_install=""
+aur_install=" "
 for pkg in "${aur_depends[@]}"; do
   sleep 0.2
   if pacman -Qq "$pkg" &> /dev/null; then
-    echo "$pkg is installed. Skipping..."
+    echo -e "\033[32m$pkg is installed. Skipping...\033[0m"
   else
-    echo "$pkg is not installed."
+    echo -e "\033[33m$pkg is not installed.\033[0m"
     aur_install+="$pkg "
   fi
 done
 
-if [ -z "$pacman_install" ]; then
+echo ""
+
+if [[ -z "$pacman_install" ]]; then
   echo "Installing pacman dependencies..."
-  echo "pacman command: 'sudo pacman -S $pacman_install'"
-  #sudo pacman -S $pacman_install
+  #echo "pacman command: 'sudo pacman -S $pacman_install'"
+  sudo pacman -S $pacman_install
   # Check to see if pacman install was successful
   if [ $? -eq 0 ]; then
     echo "Pacman dependencies installed successfully. Installing AUR dependencies..."
   else
-    echo "Pacman installation failed. Please see pacman log for more info and try again."
+    echo -e "\033[31mPacman installation failed. Please see pacman log for more info and try again.\033[0m"
     echo "Needed packages: $pacman_install"
     exit 1
   fi
 else
-  echo "All pacman dependencies installed. Checking AUR dependencies..."
+  echo "All pacman dependencies installed."
 fi
 
-if [ -z "$aur_install" ]; then
+echo ""
+
+if [[ -z "$aur_install" ]]; then
   #Check if an AUR helper is installed
   command_exists() {
     command -v "$1" >/dev/null 2>&1
@@ -147,37 +151,47 @@ if [ -z "$aur_install" ]; then
             echo "Invalid choice. Please select a valid choice, or press ctrl-c to exit."
           fi
       else
-        echo "If you do not wish to use an AUR helper you must ensure the following packages are installed, then re-run the script."
+        echo -e "\033[31mIf you do not wish to use an AUR helper you must ensure the following packages are installed, then re-run the script.\033[0m"
         echo "AUR dependencies: $aur_install"
         exit 1
       fi
     done
 
     echo "Installing '$selected_manager'..."
-    echo "Installation command: sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/$selected_manager.git && cd $selected_manager && makepkg -si"
-    #sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/$selected_manager.git && cd $selected_manager && makepkg -si
+    #echo "Installation command: sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/$selected_manager.git && cd $selected_manager && makepkg -si"
+    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/$selected_manager.git && cd $selected_manager && makepkg -si
     if [ $? -eq 0 ]; then
       echo "$selected_manager installation success! Removing temporary build files..."
-      #cd .. && rm -rf $selected_manager
+      cd .. && rm -rf $selected_manager
     else
-      echo "$selected_manager installation failed. Please install an AUR helper (yay/paru) and re-run the script."
+      echo -e "\033[31m$selected_manager installation failed. Please install an AUR helper (yay/paru) and re-run the script.\033[0m"
       exit 1
     fi
   fi
   
   echo "Installing AUR dependencies with $selected_manager..."
-  echo "aur command: '$selected_manager -S $aur_install'"
+  $selected_manager -S $aur_install
+  if [ $? -eq 0 ]; then
+    echo "$selected_manager dependencies installed successfully."
+  else
+    echo -e "\033[31m$selected_manager installation failed. Please see $selected_manager log for more info and try again.\033[0m"
+    echo "Needed packages: $aur_install"
+    exit 1
+  fi
 else
   echo "All AUR dependencies installed."
 fi
 
+echo ""
+
+echo "Linking config files to '$HOME/'"
 for dir in */; do
   # Check if it's a directory (although the `*/` pattern usually ensures this)
   if [ -d "$dir" ]; then
-    sleep 0.2
+    sleep 0.1
     echo "Stowing files from '$dir' into '$HOME/'"
     dir="${dir%/}"
-    echo "Stow command: stow $dir"
-    #stow $dir
+    #echo "Stow command: stow $dir"
+    stow $dir
   fi
 done
