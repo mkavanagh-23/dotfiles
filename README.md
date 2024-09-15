@@ -4,7 +4,7 @@ Flavored with [Catppuccin](https://github.com/catppuccin/catppuccin), [Rose Pine
 
 Powered by: [Hyprland](https://github.com/hyprwm/Hyprland), [waybar](https://github.com/Alexays/Waybar), [Hyprlock](https://github.com/hyprwm/hyprlock), [wlogout](https://github.com/ArtsyMacaw/wlogout), and [wofi](https://hg.sr.ht/~scoopta/wofi).
 <div align="center">
-    <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%203.png" width="960" height="540" />
+    <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%203.png" width="640" height="360"/>
 </div>
 
 This directory contains the dotfiles for my system. 
@@ -15,11 +15,11 @@ Hyprlock config adapted from [MrVivekRajan](https://github.com/MrVivekRajan/Hypr
 <details>
   <summary>More screenshots:</summary>
     <div align="center">
-        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%201.png" width="960" height="540" />
-        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%204.png" width="960" height="540" />
-        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%202.png" width="960" height="540" />
-        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%205.png" width="960" height="540" />
-        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%207.png" width="960" height="540" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%201.png" width="640" height="360" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%204.png" width="640" height="360" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%202.png" width="640" height="360" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%205.png" width="640" height="360" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot%207.png" width="640" height="360" />
     </div>
 </details>
 
