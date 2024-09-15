@@ -74,7 +74,7 @@ fi
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fast-syntax-highlighting kitty)
+plugins=(git fast-syntax-highlighting kitty web-search colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,9 +118,8 @@ else
 fi
 
 alias sftp-server='sftp $SERVER_USER@$SERVER_ADDRESS:/downloads'
+alias sftp-jellyfin='sftp $JELLYFIN_USER@$JELLYFIN_ADDRESS'
 alias update='sudo pacman -Syu && paru'
-alias screenshot='nohup screenshot && exit'
-alias screenshot_all='nohup screenshot_all && exit'
 
 #Use zoxide instead of cd
 eval "$(zoxide init --cmd cd zsh)"
