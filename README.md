@@ -4,7 +4,7 @@ Flavored with [Catppuccin](https://github.com/catppuccin/catppuccin), [Rose Pine
 
 Powered by: [Hyprland](https://github.com/hyprwm/Hyprland), [waybar](https://github.com/Alexays/Waybar), [Hyprlock](https://github.com/hyprwm/hyprlock), [wlogout](https://github.com/ArtsyMacaw/wlogout), and [wofi](https://hg.sr.ht/~scoopta/wofi).
 <div align="center">
-    ![arch screenshot](https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot3.png)
+    <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot3.png" width="960" height="540" />
 </div>
 
 This directory contains the dotfiles for my system. 
@@ -15,11 +15,11 @@ Hyprlock config adapted from [MrVivekRajan](https://github.com/MrVivekRajan/Hypr
 <details>
   <summary>More screenshots:</summary>
     <div align="center">
-      ![arch screenshot](https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot1.png)
-      ![arch screenshot](https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot4.png)
-      ![arch screenshot](https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot2.png)
-      ![arch screenshot](https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot5.png)
-      ![arch screenshot](https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot7.png)
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot1.png" width="960" height="540" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot4.png" width="960" height="540" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot2.png" width="960" height="540" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot5.png" width="960" height="540" />
+        <img src="https://raw.githubusercontent.com/mkavanagh-23/dotfiles/master/screenshots/screenshot7.png" width="960" height="540" />
     </div>
 </details>
 
