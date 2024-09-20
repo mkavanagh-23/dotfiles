@@ -120,6 +120,7 @@ fi
 alias sftp-server='sftp $SERVER_USER@$SERVER_ADDRESS:/downloads'
 alias sftp-jellyfin='sftp $JELLYFIN_USER@$JELLYFIN_ADDRESS'
 alias update='sudo pacman -Syu && paru'
+alias empty-trash='sudo rm -rf --interactive $HOME/.Trash/*'
 
 #Use zoxide instead of cd
 eval "$(zoxide init --cmd cd zsh)"
