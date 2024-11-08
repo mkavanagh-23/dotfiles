@@ -119,6 +119,8 @@ fi
 
 alias sftp-server='sftp $SERVER_USER@$SERVER_ADDRESS:/downloads'
 alias sftp-jellyfin='sftp $JELLYFIN_USER@$JELLYFIN_ADDRESS'
+alias code-server='sshfs $SERVER_USER@$SERVER_ADDRESS:$HOME/code-files /mnt/code-server'
+alias code-unmount='fusermount3 -u /mnt/code-server'
 alias update='sudo pacman -Syu && paru'
 alias empty-trash='sudo rm -rf --interactive $HOME/.Trash/*'
 
