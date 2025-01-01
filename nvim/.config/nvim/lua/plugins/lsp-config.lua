@@ -17,6 +17,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
       -- Set keymaps for lsp actions
       local on_attach = function(_, _)
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
@@ -26,16 +27,14 @@ return {
         vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       end
-      -- Set capabilities to default
-      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       lspconfig.lua_ls.setup({
         on_attach = on_attach,
-        -- capabilities = capabilities
+        capabilities = capabilities
       })
       lspconfig.clangd.setup({
         on_attach = on_attach,
-        -- capabilities = capabilities
+        capabilities = capabilities
       })
 
     end
