@@ -39,6 +39,28 @@ vim.opt.relativenumber = true
 -- set column at 80 chars
 vim.opt.colorcolumn = "80,144,182"
 
+-- yank to the system clipboard
+vim.opt.clipboard = "unnamedplus"
+
+
+-- Set up terminal
+vim.api.nvim_create_autocmd('TermOpen', {
+  desc = 'Set formatting for buil-in terminal emulator',
+  group = vim.api.nvim_create_augroup('custom-term-open', {clear = true}),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
+})
+-- Set custom mapping for serial monitor
+vim.keymap.set("n", "<leader>sm", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 10)
+  vim.fn.chansend(vim.b.terminal_job_id, "screen /dev/ttyUSB0 115200\n")
+end)
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
