@@ -123,6 +123,7 @@ alias code-server='sshfs $SERVER_USER@$SERVER_ADDRESS:$HOME/code-files /mnt/code
 alias code-unmount='fusermount3 -u /mnt/code-server'
 alias update='sudo pacman -Syu && paru'
 alias empty-trash='sudo rm -rf --interactive $HOME/.Trash/*'
+alias esp32serial='screen /dev/ttyUSB0 115200'
 
 #Use zoxide instead of cd
 eval "$(zoxide init --cmd cd zsh)"
