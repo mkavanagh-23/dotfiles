@@ -32,7 +32,35 @@ return {
         on_attach = on_attach,
         capabilities = capabilities
       })
+      lspconfig.bashls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
       lspconfig.clangd.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.cssls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.dockerls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.docker_compose_language_service.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.arduino_language_server.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.html.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.hyprls.setup({
         on_attach = on_attach,
         capabilities = capabilities
       })
