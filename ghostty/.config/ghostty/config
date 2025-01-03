@@ -1,0 +1,13 @@
+# Disable window decorations
+window-decoration = false
+title = ghostty
+
+# Set the theme
+theme = tokyonight
+background = #11111B
+background-opacity = 0.98
+background-blur-radius = 20
+window-padding-x = 4,2
+
+# Set the font
+font-family = "NotoSansM Nerd Font Mono"
