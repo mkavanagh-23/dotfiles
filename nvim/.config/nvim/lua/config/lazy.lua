@@ -84,7 +84,7 @@ vim.keymap.set("n", "<leader>sm", function()
   local win = vim.api.nvim_open_win(buf, true, opts)  -- Open a floating window with the buffer
 
   -- Open terminal in the floating window and get the job ID
-  local job_id = vim.fn.termopen("cat /dev/ttyUSB0", {
+  local job_id = vim.fn.termopen("stty -F /dev/ttyUSB0 115200 && cat /dev/ttyUSB0", {
     on_exit = function(_, exit_code)
       if exit_code ~= 0 then
         print("Terminal job failed!")
