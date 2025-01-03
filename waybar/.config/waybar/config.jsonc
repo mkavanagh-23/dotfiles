@@ -27,6 +27,10 @@
           "title<.*Picture-in-Picture.*>": " ",
 	      "class<firefox>": " ",
           "class<kitty>": " ",
+          "class<com.mitchellh.ghostty>": " ",
+          "class<WebApp-ChatGPT0190>": "󱜸 ",
+          "class<WebApp-iCloud1336>": " ",
+          "class<obsidian>": "󱓧 ",
           "class<konsole>": " ",
           "class<thunar>": "󰝰 ",
           "class<discord>": " ",
@@ -42,7 +46,7 @@
 	    }   
     },
     "hyprland/window": {
-        "format": "{class}",
+        "format": "{title}",
 	    "separate-outputs": true
     },
     "keyboard-state": {
@@ -132,7 +136,7 @@
         "format-disconnected": "󰤭   Disconnected",
         "format-alt": "{icon}   {essid} | {ipaddr}",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-	    "on-click-right": "kitty nmtui"
+	    "on-click-right": "ghostty -e nmtui"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
