@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-if [[ "$TERM" == "xterm-kitty" ]] || [[ "$TERM" == "tmux-256color" ]]; then
+if [[ "$TERM" == "xterm-kitty" ]] || [[ "$TERM" == "tmux-256color" ]] || [[ "$TERM" == "xterm-ghostty" ]]; then
   ZSH_THEME="robbyrussell"
 else
   ZSH_THEME="bureau"
@@ -129,7 +129,7 @@ alias esp32serial='stty -F /dev/ttyUSB0 115200 && cat /dev/ttyUSB0'
 eval "$(zoxide init --cmd cd zsh)"
 
 # Set the starship prompt
-if [[ "$TERM" == "xterm-kitty" ]] || [[ "$TERM" == "tmux-256color" ]]; then
+if [[ "$TERM" == "xterm-kitty" ]] || [[ "$TERM" == "tmux-256color" ]] || [[ "$TERM" == "xterm-ghostty" ]]; then
   eval "$(starship init zsh)"
   alias ls="eza --icons"
   alias duf='duf --hide-fs tmpfs,devtmpfs'
