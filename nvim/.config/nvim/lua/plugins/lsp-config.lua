@@ -14,12 +14,28 @@ return {
     end
   },
   {
+    "SmiteshP/nvim-navic",
+    config = function()
+      require("nvim-navic").setup({
+        lsp = {
+          auto_attach = true,
+          preference = nil,
+        }
+      })
+    end
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local navic = require("nvim-navic")
       -- Set keymaps for lsp actions
-      local on_attach = function(_, _)
+      local on_attach = function(client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+          navic.attach(client, bufnr)
+          vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        end
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
