@@ -124,25 +124,64 @@ return {
       require("winbar").setup({
         enabled = true,
         show_context = true, -- Show context in winbar
+        colors = {
+          path = '',         -- You can customize colors like #c946fd
+          file_name = '',
+          symbols = '',
+        },
+        icons = {
+          file_icon_default = '',
+          seperator = '>',
+          editor_state = '●',
+          lock_icon = '',
+        },
+        exclude_filetype = {
+          'help',
+          'startify',
+          'dashboard',
+          'packer',
+          'neogitstatus',
+          'NvimTree',
+          'Trouble',
+          'alpha',
+          'lir',
+          'Outline',
+          'spectre_panel',
+          'toggleterm',
+          'qf',
+        }
       })
 
       -- Custom winbar setup to include nvim-navic
       local function get_winbar()
         local navic = require("nvim-navic")
-        local winbar_text = vim.api.nvim_eval('"%f"') -- Get the file name as the base winbar
-
-        -- Append LSP context if available
-        if navic.is_available() then
-          return winbar_text .. " " .. navic.get_location()
-        else
-          return winbar_text
-        end
+        return navic.get_location()
       end
+
+      -- Define excluded types to prevent setting bar again
+      local excluded_filetypes = {
+        help = true,
+        startify = true,
+        dashboard = true,
+        packer = true,
+        neogitstatus = true,
+        NvimTree = true,
+        Trouble = true,
+        alpha = true,
+        lir = true,
+        Outline = true,
+        spectre_panel = true,
+        toggleterm = true,
+        qf = true,
+      }
 
       -- Update winbar dynamically
       vim.api.nvim_create_autocmd({ "BufWinEnter", "CursorMoved", "BufEnter" }, {
         callback = function()
-          vim.o.winbar = get_winbar()
+          local filetype = vim.bo.filetype
+          if not excluded_filetypes[filetype] then
+            vim.o.winbar = vim.o.winbar .. " > " .. get_winbar()
+          end
         end,
       })
     end,
