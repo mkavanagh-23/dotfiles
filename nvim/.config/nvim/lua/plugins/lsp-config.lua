@@ -44,6 +44,14 @@ return {
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       end
 
+      local on_attach_html = function(client, bufnr)
+        on_attach(client, bufnr)
+        vim.wo.wrap = true
+        vim.wo.breakindent = true
+        vim.wo.breakindentopt = 'shift:3'
+
+      end
+
       lspconfig.lua_ls.setup({
         on_attach = on_attach,
         capabilities = capabilities
@@ -73,8 +81,8 @@ return {
         capabilities = capabilities
       })
       lspconfig.html.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
+        on_attach = on_attach_html,
+        capabilities = capabilities,
       })
       lspconfig.hyprls.setup({
         on_attach = on_attach,
