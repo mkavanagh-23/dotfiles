@@ -36,7 +36,7 @@ return {
         -- Set context for winbar
         if client.server_capabilities.documentSymbolProvider then
           navic.attach(client, bufnr)
-          vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+          vim.wo.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
         end
 
         -- Set keymaps for lsp actions
@@ -153,7 +153,7 @@ return {
       })
 
       -- Custom winbar setup to include nvim-navic
-      local function get_winbar()
+      local function get_lsp_context()
         local navic = require("nvim-navic")
         return navic.get_location()
       end
@@ -180,7 +180,7 @@ return {
         callback = function()
           local filetype = vim.bo.filetype
           if not excluded_filetypes[filetype] then
-            vim.o.winbar = vim.o.winbar .. " > " .. get_winbar()
+            vim.wo.winbar = vim.wo.winbar .. " > " .. get_lsp_context()
           end
         end,
       })
