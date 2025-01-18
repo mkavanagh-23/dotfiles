@@ -44,12 +44,22 @@ return {
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       end
 
+      local toggle_wrap = function()
+        if vim.wo.wrap then
+          vim.wo.wrap = false
+          vim.wo.breakindent = false
+          vim.wo.breakindentopt = ''
+        else
+          vim.wo.wrap = true
+          vim.wo.breakindent = true
+          vim.wo.breakindentopt = 'shift:3'
+        end
+      end
+
       local on_attach_html = function(client, bufnr)
         on_attach(client, bufnr)
-        vim.wo.wrap = true
-        vim.wo.breakindent = true
-        vim.wo.breakindentopt = 'shift:3'
-
+        toggle_wrap()
+        vim.keymap.set('n', '<leader>tw', toggle_wrap, { desc = "Toggle wrapping and indentation" })
       end
 
       lspconfig.lua_ls.setup({
