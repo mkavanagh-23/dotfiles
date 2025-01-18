@@ -116,5 +116,35 @@ return {
         capabilities = capabilities
       })
     end
-  }
+  },
+  {
+    "fgheng/winbar.nvim",
+    config = function()
+      -- Import winbar setup
+      require("winbar").setup({
+        enabled = true,
+        show_context = true, -- Show context in winbar
+      })
+
+      -- Custom winbar setup to include nvim-navic
+      local function get_winbar()
+        local navic = require("nvim-navic")
+        local winbar_text = vim.api.nvim_eval('"%f"') -- Get the file name as the base winbar
+
+        -- Append LSP context if available
+        if navic.is_available() then
+          return winbar_text .. " " .. navic.get_location()
+        else
+          return winbar_text
+        end
+      end
+
+      -- Update winbar dynamically
+      vim.api.nvim_create_autocmd({ "BufWinEnter", "CursorMoved", "BufEnter" }, {
+        callback = function()
+          vim.o.winbar = get_winbar()
+        end,
+      })
+    end,
+  },
 }
