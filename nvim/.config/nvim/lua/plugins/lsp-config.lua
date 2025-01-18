@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "dockerls", "docker_compose_language_service", "arduino_language_server", "html", "hyprls"}
+        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "dockerls", "docker_compose_language_service", "arduino_language_server", "html", "hyprls" }
       })
     end
   },
@@ -36,12 +36,15 @@ return {
           navic.attach(client, bufnr)
           vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
         end
-        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
-        vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
+        vim.keymap.set('n', '<leader>fmt', function()
+          vim.lsp.buf.format({ async = true, desc = "Format document" })
+        end, { buffer = bufnr })
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
+        vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { buffer = bufnr })
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
       end
 
       local toggle_wrap = function()
@@ -98,7 +101,6 @@ return {
         on_attach = on_attach,
         capabilities = capabilities
       })
-
     end
   }
 }
