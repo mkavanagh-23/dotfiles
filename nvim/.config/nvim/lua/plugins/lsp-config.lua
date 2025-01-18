@@ -179,8 +179,11 @@ return {
       vim.api.nvim_create_autocmd({ "BufWinEnter", "CursorMoved", "BufEnter" }, {
         callback = function()
           local filetype = vim.bo.filetype
+          local lsp_context = get_lsp_context()
           if not excluded_filetypes[filetype] then
-            vim.wo.winbar = vim.wo.winbar .. " > " .. get_lsp_context()
+            if lsp_context ~= "" then
+              vim.wo.winbar = vim.wo.winbar .. " > " .. lsp_context
+            end
           end
         end,
       })
