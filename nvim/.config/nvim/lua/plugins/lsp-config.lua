@@ -30,12 +30,16 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local navic = require("nvim-navic")
-      -- Set keymaps for lsp actions
+
+      -- Define actions on buffer attach to language server
       local on_attach = function(client, bufnr)
+        -- Set context for winbar
         if client.server_capabilities.documentSymbolProvider then
           navic.attach(client, bufnr)
           vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
         end
+
+        -- Set keymaps for lsp actions
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename current buffer" })
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Take code action" })
         vim.keymap.set('n', '<leader>fmt', function()
@@ -46,6 +50,15 @@ return {
         vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references,
           { buffer = bufnr, desc = "Get references" })
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover details" })
+
+        -- Auto-format on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = vim.api.nvim_create_augroup("LspAutoFormat", { clear = true }),
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format({ async = true })
+          end,
+        })
       end
 
       local toggle_wrap = function()
