@@ -36,15 +36,16 @@ return {
           navic.attach(client, bufnr)
           vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
         end
-        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr })
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr })
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename current buffer" })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Take code action" })
         vim.keymap.set('n', '<leader>fmt', function()
-          vim.lsp.buf.format({ async = true, desc = "Format document" })
-        end, { buffer = bufnr })
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
-        vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { buffer = bufnr })
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
+          vim.lsp.buf.format({ async = true })
+        end, { buffer = bufnr, desc = "Format document" })
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Get definition" })
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr, desc = "Get implementation" })
+        vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references,
+          { buffer = bufnr, desc = "Get references" })
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover details" })
       end
 
       local toggle_wrap = function()

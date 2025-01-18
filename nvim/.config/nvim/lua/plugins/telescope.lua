@@ -18,12 +18,12 @@ return {
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {
-            -- even more opts
+              -- even more opts
             }
           }
         }
       })
-    require("telescope").load_extension("ui-select")
-  end
+      require("telescope").load_extension("ui-select")
+    end
   }
 }

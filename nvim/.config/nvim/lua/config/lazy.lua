@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -42,25 +42,28 @@ vim.opt.colorcolumn = "80,144,182"
 -- yank to the system clipboard
 vim.opt.clipboard = "unnamedplus"
 
-
+-- SERIAL MONITOR
 -- Set up terminal
 vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'Set formatting for buil-in terminal emulator',
-  group = vim.api.nvim_create_augroup('custom-term-open', {clear = true}),
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
   callback = function()
     vim.opt.number = false
     vim.opt.relativenumber = false
   end,
 })
--- Set custom mapping for serial monitor
+
+-- Set the keymap
+-- Uncomment the below 7 lines to set serial monitor to short bottom window
 -- vim.keymap.set("n", "<leader>sm", function()
 --   vim.cmd.vnew()
 --   vim.cmd.term()
 --   vim.cmd.wincmd("J")
 --   vim.api.nvim_win_set_height(0, 10)
 --   vim.fn.chansend(vim.b.terminal_job_id, "cat /dev/ttyUSB0\n")
--- end)
+-- end, { desc = "Open serial monitor on TTYUSB0" })
 
+--Uncomment the below 36 lines to open serial monitor in floating window
 vim.keymap.set("n", "<leader>sm", function()
   -- Get the dimensions of the current window and calculate the center position
   local width = vim.o.columns
@@ -80,8 +83,8 @@ vim.keymap.set("n", "<leader>sm", function()
     style = 'minimal',
     border = 'single',
   }
-  local buf = vim.api.nvim_create_buf(false, true)  -- Create an empty buffer
-  local win = vim.api.nvim_open_win(buf, true, opts)  -- Open a floating window with the buffer
+  local buf = vim.api.nvim_create_buf(false, true)   -- Create an empty buffer
+  local win = vim.api.nvim_open_win(buf, true, opts) -- Open a floating window with the buffer
 
   -- Open terminal in the floating window and get the job ID
   local job_id = vim.fn.termopen("stty -F /dev/ttyUSB0 115200 && cat /dev/ttyUSB0", {
@@ -95,8 +98,8 @@ vim.keymap.set("n", "<leader>sm", function()
   -- Set the window height as per the requirement
   vim.api.nvim_win_set_height(win, win_height)
   vim.api.nvim_buf_set_option(buf, 'filetype', 'terminal')
-  vim.cmd('startinsert')  -- Start insert mode for the terminal
-end)
+  vim.cmd('startinsert') -- Start insert mode for the terminal
+end, { desc = "Open serial monitor on TTYUSB0" })
 
 -- Setup lazy.nvim
 require("lazy").setup({

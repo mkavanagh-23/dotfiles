@@ -1,11 +1,11 @@
 return {
-    'goolord/alpha-nvim',
-    dependencies = { 'echasnovski/mini.icons' },
-    config = function ()
-      local alpha = require("alpha")
-      local dashboard = require("alpha.themes.startify")
+  'goolord/alpha-nvim',
+  dependencies = { 'echasnovski/mini.icons' },
+  config = function()
+    local alpha = require("alpha")
+    local dashboard = require("alpha.themes.startify")
 
-      dashboard.section.header.val = {
+    dashboard.section.header.val = {
       [[                                                ]],
       [[                                                ]],
       [[                                                ]],
@@ -17,7 +17,7 @@ return {
       [[╚═╝  ╚══╝╚══════╝ ╚════╝    ╚═╝   ╚═╝╚═╝     ╚═╝]],
       [[                                                ]],
       [[                                                ]]
-      }
-        require'alpha'.setup(require'alpha.themes.startify'.config)
-    end
+    }
+    require 'alpha'.setup(require 'alpha.themes.startify'.config)
+  end
 };
