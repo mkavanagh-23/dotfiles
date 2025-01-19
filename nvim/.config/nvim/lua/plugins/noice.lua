@@ -23,6 +23,35 @@ return {
           ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
         },
       },
+      routes = {
+        {
+          -- Disable popups on save
+          filter = {
+            event = "msg_show",
+            kind = "",
+            find = "written",
+          },
+          opts = { skip = true },
+        },
+        {
+          -- Disable popups on yank
+          filter = {
+            event = "msg_show",
+            kind = "",
+            find = "more lines",
+          },
+          opts = { skip = true },
+        },
+        {
+          -- Filter out empty notifications
+          filter = {
+            event = "msg_show",
+            kind = "",
+            find = "^%s*$",
+          },
+          opts = { skip = true },
+        },
+      },
       -- you can enable a preset for easier configuration
       presets = {
         bottom_search = false,        -- use a classic bottom cmdline for search
