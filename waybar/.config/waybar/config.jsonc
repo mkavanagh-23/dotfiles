@@ -26,11 +26,12 @@
           "title<.*reddit.*>": " ",
           "title<.*Picture-in-Picture.*>": " ",
 	      "class<firefox>": " ",
+          "class<chromium>": " ",
           "class<kitty>": " ",
           "class<konsole>": " ",
           "class<thunar>": "󰝰 ",
           "class<discord>": " ",
-          "class<subl>": "󰅳 ",
+          "class<sublime_text>": "󰅳 ",
           "class<celluloid>": " ",
           "class<Cider>": "󰎆 ",
           "class<code-oss>": "󰨞 ",
@@ -38,7 +39,8 @@
           "class<org.larusstone.qtspim>": " ",
           "class<libreoffice-writer>": " ",
           "class<libreoffice-startcenter>": "󰏆 ",
-		  "class<mpv>": " "
+		  "class<mpv>": " ",
+          "class<WebApp-ChatGPT0190>": "󱜸 "
 	    }   
     },
     "hyprland/window": {
