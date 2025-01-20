@@ -1,2 +1,2 @@
 require("config.lazy")
-require("config.rightclick")
+require("config.terminal")
