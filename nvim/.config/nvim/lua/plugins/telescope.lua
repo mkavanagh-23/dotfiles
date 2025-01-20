@@ -67,5 +67,21 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  }
+  },
+  -- View clipboard
+  {
+    "AckslD/nvim-neoclip.lua",
+    dependencies = {
+      -- you'll need at least one of these
+      { 'nvim-telescope/telescope.nvim' },
+      -- {'ibhagwan/fzf-lua'},
+
+      -- uncomment below for persistence
+      -- {'kkharji/sqlite.lua', module = 'sqlite'},
+    },
+    config = function()
+      require('neoclip').setup()
+      vim.keymap.set('n', '<leader>hs', ':Telescope neoclip<CR>', { desc = "Show history" })
+    end,
+  },
 }
