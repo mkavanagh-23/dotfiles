@@ -42,7 +42,6 @@ return {
         gitsigns = true,
         nvimtree = true,
         treesitter = true,
-        notify = false,
         mini = {
           enabled = true,
           indentscope_color = "",
@@ -69,8 +68,21 @@ return {
         telescope = {
           enabled = true,
           -- style = "nvchad"
-        }
-        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        },
+        alpha = true,
+        indent_blankline = {
+          enabled = true,
+          scope_color = "#6c7086",
+          colored_indent_levels = true,
+        },
+        markdown = true,
+        noice = true,
+        navic = {
+          enabled = true,
+          custom_bg = "lualine"
+        },
+        notify = true,
+        which_key = true,
       },
     })
     vim.o.termguicolors = true
