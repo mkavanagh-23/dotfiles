@@ -147,6 +147,7 @@ return {
           'lir',
           'Outline',
           'spectre_panel',
+          'terminal',
           'toggleterm',
           'qf',
         }
@@ -206,4 +207,3 @@ return {
     end
   }
 }
-
