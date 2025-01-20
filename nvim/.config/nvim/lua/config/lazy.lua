@@ -53,18 +53,16 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
--- Set the keymap
--- Uncomment the below 7 lines to set serial monitor to short bottom window
--- vim.keymap.set("n", "<leader>sm", function()
---   vim.cmd.vnew()
---   vim.cmd.term()
---   vim.cmd.wincmd("J")
---   vim.api.nvim_win_set_height(0, 10)
---   vim.fn.chansend(vim.b.terminal_job_id, "cat /dev/ttyUSB0\n")
--- end, { desc = "Open serial monitor on TTYUSB0" })
+function _G.serial_monitor()
+  -- Uncomment the below 7 lines to set serial monitor to short bottom window
+  --   vim.cmd.vnew()
+  --   vim.cmd.term()
+  --   vim.cmd.wincmd("J")
+  --   vim.api.nvim_win_set_height(0, 10)
+  --   vim.fn.chansend(vim.b.terminal_job_id, "cat /dev/ttyUSB0\n")
+  -- end
 
---Uncomment the below 36 lines to open serial monitor in floating window
-vim.keymap.set("n", "<leader>sm", function()
+  --Uncomment the below 36 lines to open serial monitor in floating window
   -- Get the dimensions of the current window and calculate the center position
   local width = vim.o.columns
   local height = vim.o.lines
@@ -99,7 +97,9 @@ vim.keymap.set("n", "<leader>sm", function()
   vim.api.nvim_win_set_height(win, win_height)
   vim.api.nvim_buf_set_option(buf, 'filetype', 'terminal')
   vim.cmd('startinsert') -- Start insert mode for the terminal
-end, { desc = "Open serial monitor on TTYUSB0" })
+end
+
+vim.keymap.set("n", "<leader>sm", serial_monitor, { desc = "Open serial monitor on TTYUSB0" })
 
 -- Setup lazy.nvim
 require("lazy").setup({
