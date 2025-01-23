@@ -3,7 +3,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'Set formatting for built-in terminal emulator',
   group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
   callback = function()
-    vim.wo.winbar = ''     -- Disable winbar in the terminal
     vim.opt.number = false
     vim.opt.relativenumber = false
     vim.api.nvim_buf_set_keymap(0, 't', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
