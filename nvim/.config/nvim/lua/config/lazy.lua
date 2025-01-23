@@ -42,16 +42,6 @@ vim.opt.colorcolumn = "80,144,182"
 -- yank to the system clipboard
 vim.opt.clipboard = "unnamedplus"
 
--- SERIAL MONITOR
--- Set up terminal
-vim.api.nvim_create_autocmd('TermOpen', {
-  desc = 'Set formatting for buil-in terminal emulator',
-  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
-  callback = function()
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-  end,
-})
 
 -- Setup lazy.nvim
 require("lazy").setup({
