@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
   callback = function()
     vim.opt.number = false
     vim.opt.relativenumber = false
-    vim.api.nvim_buf_set_keymap(0, 't', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(0, 't', '<S-Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
   end,
 })
 

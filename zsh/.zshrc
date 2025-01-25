@@ -14,6 +14,10 @@ else
   ZSH_THEME="bureau"
 fi
 
+# Source the plugin for enhanved vi mode
+# Must first be installed from the AUR (zsh-vi-mode)
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
