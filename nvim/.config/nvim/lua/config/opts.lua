@@ -38,6 +38,9 @@ local toggle_wrap = function()
     vim.wo.breakindentopt = 'shift:3'
   end
 end
+
+vim.api.nvim_set_keymap('n', '<leader>ti', ':lua require"image".clear()<CR>', { noremap = true, silent = true, desc = "Toggle image rendering" })
+
 -- And apply it with a keymap on filetype attach
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "html", "markdown" },
