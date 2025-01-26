@@ -43,6 +43,16 @@ return {
           opts = { skip = true },
         },
         {
+          -- Filter wonky error on closing terminal
+          -- COMMENT OUT BEFORE EDITNG terminal.lua
+          filter = {
+            event = "msg_show",
+            kind = "",
+            find = "/home/mattkavs/.config/nvim/lua/config/terminal.lua",
+          },
+          opts = { skip = true },
+        },
+        {
           -- Filter out empty notifications
           filter = {
             event = "msg_show",
