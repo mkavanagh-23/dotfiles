@@ -48,7 +48,7 @@ return {
           filter = {
             event = "msg_show",
             kind = "",
-            find = "/home/mattkavs/.config/nvim/lua/config/terminal.lua",
+            find = ".config/nvim/lua/config/terminal.lua",
           },
           opts = { skip = true },
         },

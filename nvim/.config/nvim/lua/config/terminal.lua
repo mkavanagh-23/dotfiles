@@ -79,17 +79,23 @@ local toggle_terminal = function()
   end
 end
 
+local function file_exists(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and stat.type == 'char'
+end
+
 
 function _G.serial_monitor(baudrate, serial_port)
-  baudrate = baudrate or vim.fn.input("Enter baudrate: ")
   serial_port = serial_port or "ttyUSB0"
   local device_path = "/dev/" .. serial_port
 
   -- Check if device exists at given device_path
-  if not vim.fn.filereadable(device_path) then
+  if not file_exists(device_path) then
     vim.notify("Device '" .. device_path .. "' not found.", vim.log.levels.ERROR)
     return
   end
+
+  baudrate = baudrate or vim.fn.input("Enter baudrate: ")
 
   --local command = "stty -F " .. device_path .. " " .. baudrate .. " && cat " .. device_path
   local command = "screen " .. device_path .. " " .. baudrate
@@ -122,8 +128,17 @@ function _G.find_and_replace()
   vim.cmd("startinsert")
 end
 
+--local function check_file_type()
+--  local stat = vim.loop.fs_stat("/dev/ttyUSB0")
+--  if stat then
+--    print("File type: " .. stat.type)
+--  else
+--    print("Device does not exist.")
+--  end
+--end
+
 -- Set the keymaps
 vim.keymap.set("n", "<leader>sm", serial_monitor, { desc = "Open serial monitor on TTYUSB0" })
+--vim.keymap.set("n", "<leader>ft", check_file_type, { desc = "Open serial monitor on TTYUSB0" })
 vim.keymap.set("n", "<leader>find", find_and_replace, { desc = "Find and replace" })
 vim.keymap.set({ "n", "t" }, "<leader>tt", toggle_terminal, { desc = "Toggle terminal" })
-vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
