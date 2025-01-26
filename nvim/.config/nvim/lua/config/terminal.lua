@@ -80,33 +80,38 @@ local toggle_terminal = function()
 end
 
 
-function _G.serial_monitor()
-  -- Uncomment the below 7 lines to set serial monitor to short bottom window
-  --   vim.cmd.vnew()
-  --   vim.cmd.term()
-  --   vim.cmd.wincmd("J")
-  --   vim.api.nvim_win_set_height(0, 10)
-  --   vim.fn.chansend(vim.b.terminal_job_id, "cat /dev/ttyUSB0\n")
-  -- end
+function _G.serial_monitor(baudrate, serial_port)
+  baudrate = baudrate or vim.fn.input("Enter baudrate: ")
+  serial_port = serial_port or "ttyUSB0"
+  local device_path = "/dev/" .. serial_port
 
-  -- Uncomment the below function to open serial monitor in floating window
-  --toggle_terminal(80, 20, "stty -F /dev/ttyUSB0 115200 && cat /dev/ttyUSB0")
+  -- Check if device exists at given device_path
+  if not vim.fn.filereadable(device_path) then
+    vim.notify("Device '" .. device_path .. "' not found.", vim.log.levels.ERROR)
+    return
+  end
+
+  --local command = "stty -F " .. device_path .. " " .. baudrate .. " && cat " .. device_path
+  local command = "screen " .. device_path .. " " .. baudrate
+
   local window = create_floating_window {
-    scale = 0.5,
+    scale = 0.7,
   }
-  vim.fn.termopen("stty -F /dev/ttyUSB0 115200 && cat /dev/ttyUSB0", {
+
+  vim.fn.termopen(command, {
     on_exit = function()
       vim.api.nvim_buf_close(window.buf, true)
       vim.api.nvim_win_close(window.win, true)
     end
   })
   vim.cmd("startinsert")
+  vim.notify("Started monitoring on '" .. device_path .. "'. '󰘴a, k' to close monitoring.", vim.log.levels.INFO)
 end
 
 function _G.find_and_replace()
   --toggle_terminal(80, 30, "serpl")
   local window = create_floating_window {
-    scale = 0.6,
+    scale = 0.7,
   }
   vim.fn.termopen("serpl", {
     on_exit = function()
