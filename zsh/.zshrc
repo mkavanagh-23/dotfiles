@@ -96,6 +96,9 @@ else
   export EDITOR='nvim'
 fi
 
+# Set the manpager program
+export MANPAGER="nvim +Man!"
+
 # Set screenshot directory
 export XDG_SCREENSHOTS_DIR="$HOME/Pictures/Screenshots"
 export SECRETS_DIR="$HOME/.secrets"
