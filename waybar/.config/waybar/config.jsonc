@@ -40,7 +40,9 @@
           "class<libreoffice-writer>": " ",
           "class<libreoffice-startcenter>": "󰏆 ",
 		  "class<mpv>": " ",
-          "class<WebApp-ChatGPT0190>": "󱜸 "
+          "class<WebApp-ChatGPT0190>": "󱜸 ",
+          "class<org.pwmt.zathura>": " ",
+          "class<obsidian>": "󱓧 "
 	    }   
     },
     "hyprland/window": {
