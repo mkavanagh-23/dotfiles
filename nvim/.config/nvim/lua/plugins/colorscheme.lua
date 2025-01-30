@@ -21,7 +21,7 @@ return {
           flash = true,
           gitsigns = true,
           hop = false,
-          indent_blankline = true,
+          indent_blankline = false,
           lazy = true,
           lsp = true,
           markdown = true,
