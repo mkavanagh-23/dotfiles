@@ -28,6 +28,7 @@
 	      "class<firefox>": " ",
           "class<chromium>": " ",
           "class<kitty>": " ",
+          "class<com.mitchellh.ghostty>": " ",
           "class<konsole>": " ",
           "class<thunar>": "󰝰 ",
           "class<discord>": " ",
