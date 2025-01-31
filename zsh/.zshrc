@@ -155,6 +155,12 @@ export FZF_DEFAULT_OPTS=" \
 export PROMPT_EOL_MARK=''
 setopt PROMPT_SP
 
+# Set theming for TTY terminals
+if [ "$TERM" = linux ] && command -v ttyscheme >/dev/null; then
+	ttyscheme "kanagawa"
+fi
+
+# Autostart hyprland at login
 if uwsm check may-start; then
     exec uwsm start hyprland.desktop
 fi
