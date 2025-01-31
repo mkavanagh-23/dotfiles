@@ -47,7 +47,7 @@
 	    }   
     },
     "hyprland/window": {
-        "format": "{class}",
+        "format": "{title}",
 	    "separate-outputs": true
     },
     "keyboard-state": {

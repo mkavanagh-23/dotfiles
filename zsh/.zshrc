@@ -154,3 +154,7 @@ export FZF_DEFAULT_OPTS=" \
 
 export PROMPT_EOL_MARK=''
 setopt PROMPT_SP
+
+if uwsm check may-start; then
+    exec uwsm start hyprland.desktop
+fi
