@@ -30,7 +30,7 @@ tooltip {
 #pulseaudio,
 #bluetooth,
 #backlight {
-  background: rgba(19, 19, 20, 0.4);
+  background: rgba(19, 19, 20, 0.5);
   opacity: 1;
   padding: 0px 10px;
   margin: 0;
