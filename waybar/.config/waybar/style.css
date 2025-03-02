@@ -10,14 +10,14 @@
 }
 
 tooltip {
-  background: #161617;
-  color: #b4b1ba;
+  background: rgba(22, 22, 23, 0.3);
+  color: #c9c7cd;
   border-radius: 10px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: #b4b1ba;
+  border-color: #c9c7cd;
   transition: 0.3s;
-  opacity: 0.9;
+  opacity: 0.6;
 }
 
 #workspaces,
@@ -30,7 +30,7 @@ tooltip {
 #pulseaudio,
 #bluetooth,
 #backlight {
-  background: #131314;
+  background: rgba(19, 19, 20, 0.4);
   opacity: 1;
   padding: 0px 10px;
   margin: 0;
@@ -44,6 +44,11 @@ tooltip {
   padding-right: 0px;
   padding-left: 5px;
   border: 2px solid #b4b1ba;
+}
+
+#workspaces:hover {
+  border-color: #c9c7cd;
+  background: rgba(19, 19, 20, 1);
 }
 
 #workspaces button {
@@ -99,6 +104,7 @@ window#waybar {
 
 window#waybar #window:hover {
   color: #e8b0d4;
+  background: rgba(19, 19, 20, 1);
   border-color: #e8b0d4;
 }
 
@@ -122,6 +128,7 @@ window#waybar.empty #window {
 
 #clock:hover {
   color: #f6b0a2;
+  background: rgba(19, 19, 20, 1);
   border-color: #f6b0a2;
 }
 
@@ -138,6 +145,10 @@ window#waybar.empty #window {
   background-color: transparent;
   border-color: transparent;
   border: 0px;
+}
+
+#tray:hover {
+  background: rgba(19, 19, 20, 1);
 }
 
 #custom-vpn {
@@ -166,6 +177,7 @@ window#waybar.empty #window {
 
 #network:hover {
   color: #b7aed5;
+  background: rgba(19, 19, 20, 1);
 }
 
 #battery {
@@ -181,6 +193,7 @@ window#waybar.empty #window {
 
 #batter:hover {
   color: #a7c8b3;
+  background: rgba(19, 19, 20, 1);
 }
 
 #battery.charging {
@@ -189,6 +202,7 @@ window#waybar.empty #window {
 
 batter.charging:hover {
   color: #a7c8b3;
+  background: rgba(19, 19, 20, 1);
 }
 
 #battery.good {
@@ -197,6 +211,7 @@ batter.charging:hover {
 
 battery.good:hover {
   color: #eac5ae;
+  background: rgba(19, 19, 20, 1);
 }
 
 #battery.warning {
@@ -205,6 +220,7 @@ battery.good:hover {
 
 battery.warning:hover {
   color: #f6b0a2;
+  background: rgba(19, 19, 20, 1);
 }
 
 #battery.critical {
@@ -213,6 +229,7 @@ battery.warning:hover {
 
 battery.critical:hover {
   color: #ed96b3;
+  background: rgba(19, 19, 20, 1);
 }
 
 #pulseaudio {
@@ -225,6 +242,7 @@ battery.critical:hover {
 
 #pulseaudio:hover {
   color: #a7b3dd;
+  background: rgba(19, 19, 20, 1);
 }
 
 #pulseaudio.microphone {
@@ -250,6 +268,7 @@ battery.critical:hover {
 
 #bluetooth:hover {
   color: #a7b3dd;
+  background: rgba(19, 19, 20, 1);
 }
 
 #backlight {
@@ -265,4 +284,5 @@ battery.critical:hover {
 
 backlight:hover {
   color: #eac5ae;
+  background: rgba(19, 19, 20, 1);
 }

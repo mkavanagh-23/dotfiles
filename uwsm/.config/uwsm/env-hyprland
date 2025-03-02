@@ -1,3 +1,8 @@
 export AQ_NO_MODIFIERS=1
-export HYPRCURSOR_THEME=rose-pine-hyprcursor
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_DESKTOP=Hyprland
+export HYPRCURSOR_THEME=BreezeX-Amber-Hyprcursor
 export HYPRCURSOR_SIZE=32
+export XCURSOR_THEME=BreezeX-Amber
+export XCURSOR_SIZE=32
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1

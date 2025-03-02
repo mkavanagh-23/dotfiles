@@ -3,11 +3,12 @@ window-decoration = false
 title = ghostty
 
 theme = oldworld
-background-opacity = 0.96
-background-blur-radius = 20
+background-opacity = 0.8
 window-padding-x = 4,2
 
-font-family = "NotoSansM Nerd Font Mono"
+mouse-hide-while-typing = true
+
+font-family = "GeistMono Nerd Font Mono"
 font-size = 12
 
 class = "ghostty"
