@@ -15,6 +15,11 @@
     "os",
     "host",
     "kernel",
+    {
+      "type": "command",
+      "key": "Install Date",
+      "text": "sudo /usr/bin/tune2fs -l /dev/nvme0n1p3 | grep 'Filesystem created' | cut -d ':' -f2- | sed 's/^ *//'"
+    },
     "uptime",
 	"localip",
 	"publicip",
