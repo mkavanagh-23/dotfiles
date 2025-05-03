@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "dockerls", "docker_compose_language_service", "arduino_language_server", "html", "hyprls", "sqls" }
+        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "dockerls", "docker_compose_language_service", "arduino_language_server", "html", "hyprls", "sqls", "pylsp" }
       })
     end
   },
@@ -82,6 +82,10 @@ return {
         capabilities = capabilities
       })
       lspconfig.sqls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.pylsp.setup({
         on_attach = on_attach,
         capabilities = capabilities
       })
