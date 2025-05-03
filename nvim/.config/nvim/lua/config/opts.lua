@@ -21,10 +21,14 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- set column at 80 chars
-vim.opt.colorcolumn = "80,144,182"
+vim.opt.colorcolumn = "80,122,154,185"
 
 -- yank to the system clipboard
 vim.opt.clipboard = "unnamedplus"
+
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Set formatting for HTML and Markdown files
 local toggle_wrap = function()

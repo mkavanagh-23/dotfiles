@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "dockerls", "docker_compose_language_service", "arduino_language_server", "html", "hyprls" }
+        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "dockerls", "docker_compose_language_service", "arduino_language_server", "html", "hyprls", "sqls", "pylsp" }
       })
     end
   },
@@ -32,15 +32,17 @@ return {
         vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references,
           { buffer = bufnr, desc = "Get references" })
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover details" })
+        vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Disgnostic messages" })
+        vim.diagnostic.config({ virtual_text = true })
 
         -- Auto-format on save
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          group = vim.api.nvim_create_augroup("LspAutoFormat", { clear = true }),
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.format({ async = true })
-          end,
-        })
+        --vim.api.nvim_create_autocmd("BufWritePre", {
+        --  group = vim.api.nvim_create_augroup("LspAutoFormat", { clear = true }),
+        --  buffer = bufnr,
+        --  callback = function()
+        --    vim.lsp.buf.format({ async = true })
+        --  end,
+        --})
       end
 
       lspconfig.lua_ls.setup({
@@ -76,6 +78,14 @@ return {
         capabilities = capabilities,
       })
       lspconfig.hyprls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.sqls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+      lspconfig.pylsp.setup({
         on_attach = on_attach,
         capabilities = capabilities
       })

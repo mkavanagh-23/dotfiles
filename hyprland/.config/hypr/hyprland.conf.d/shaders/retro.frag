@@ -1,3 +1,4 @@
+// vim: set ft=glsl:
 
 precision mediump float;
 varying vec2 v_texcoord;
@@ -16,13 +17,14 @@ void main() {
     dx *= dx;
     dy *= dy;
 
-    tc.x -= 0.5;
-    tc.x *= 1.0 + (dy * 0.03);
-    tc.x += 0.5;
+    // Add curvature
+    //tc.x -= 0.5;
+    //tc.x *= 1.0 + (dy * 0.03);
+    //tc.x += 0.5;
 
-    tc.y -= 0.5;
-    tc.y *= 1.0 + (dx * 0.03);
-    tc.y += 0.5;
+    //tc.y -= 0.5;
+    //tc.y *= 1.0 + (dx * 0.03);
+    //tc.y += 0.5;
 
     // Add RGB offset for retro color separation effect
     vec2 r_tc = tc + vec2(0.001, 0.0);
@@ -40,8 +42,8 @@ void main() {
     color.rgb += scanline;
 
     // Add noise
-    //float noise = (fract(sin(dot(tc.xy + vec2(time), vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.04;
-    //color.rgb += noise;
+    float noise = (fract(sin(dot(tc.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.04;
+    color.rgb += noise;
 
     // Apply vignette effect
     float vignette = smoothstep(0.8, 0.2, dx + dy);

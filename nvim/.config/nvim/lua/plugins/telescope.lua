@@ -46,7 +46,7 @@ return {
         },
       }
       require("telescope").load_extension("emoji")
-      vim.keymap.set('n', '<leader>ef', ':Telescope emoji<CR>', { desc = "Open emoji picker" })
+      vim.keymap.set('n', '<leader>fe', ':Telescope emoji<CR>', { desc = "Open emoji picker" })
     end
   },
   -- View currently set keymaps
