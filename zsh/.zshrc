@@ -87,6 +87,7 @@ if [[ "$TERM" == "xterm-kitty" ]] || [[ "$TERM" == "xterm-ghostty" ]] || [[ "$TE
   eval "$(starship init zsh)"
   alias ls="eza --icons"
   alias duf='duf --hide-fs tmpfs,devtmpfs'
+  alias vim='nvim'
 else
   alias ls="eza"
   alias duf='duf --hide-fs tmpfs,devtmpfs -style ascii'
@@ -107,6 +108,8 @@ if [ "$TERM" = linux ] && command -v ttyscheme >/dev/null; then
 fi
 
 # Autostart hyprland at login
-if uwsm check may-start; then
-    exec uwsm start hyprland.desktop
+if [ "$TERM" != "tmux-256color" ]; then
+  if uwsm check may-start; then
+      exec uwsm start hyprland.desktop
+  fi
 fi
