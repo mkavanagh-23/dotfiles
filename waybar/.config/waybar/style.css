@@ -152,7 +152,7 @@ window#waybar.empty #window {
   background: rgba(19, 19, 20, 1);
 }
 
-#custom-vpn.disconnected {
+#custom-vpn {
   color: #6c6874;
   border-radius: 10px;
   border: 2px solid #6c6874;
@@ -164,12 +164,13 @@ window#waybar.empty #window {
 
 #custom-vpn.connected {
   color: #e29eca;
-  border-radius: 10px;
   border: 2px solid #e29eca;
-  margin-left: 0px;
-  margin-right: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
+}
+
+#custom-vpn:hover {
+  color: #e29eca;
+  border: 2px solid #e29eca;
+  background: rgba(19, 19, 20, 1);
 }
 
 #network {
@@ -298,7 +299,7 @@ battery.critical:hover {
 }
 
 #idle_inhibitor {
-  color: #e6b99d;
+  color: #6c6874;
   border-radius: 10px;
   margin-left: 5px;
   margin-right: 5px;
@@ -306,10 +307,16 @@ battery.critical:hover {
   transition: 0.3s;
   padding-right: 13px;
   padding-left: 13px;
+  border: 2px solid #6c6874;
+}
+
+#idle_inhibitor.activated {
+  color: #e6b99d;
   border: 2px solid #e6b99d;
 }
 
 #idle_inhibitor:hover {
   color: #eac5ae;
+  border: 2px solid #eac5ae;
   background: rgba(19, 19, 20, 1);
 }
