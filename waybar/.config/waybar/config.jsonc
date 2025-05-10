@@ -11,7 +11,7 @@
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "custom/vpn", "network", "battery", "pulseaudio#microphone", "pulseaudio", "backlight"],
+    "modules-right": ["tray", "custom/vpn", "network", "battery", "pulseaudio#microphone", "pulseaudio", "backlight", "idle_inhibitor"],
     // Modules configuration
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -26,6 +26,7 @@
           "title<.*reddit.*>": " ",
           "title<.*Picture-in-Picture.*>": " ",
 	      "class<firefox>": " ",
+	      "class<zen>": " ",
           "class<chromium>": " ",
           "class<kitty>": " ",
           "class<com.mitchellh.ghostty>": " ",
@@ -74,7 +75,9 @@
         "format-icons": {
             "activated": "",
             "deactivated": ""
-        }
+        },
+        "tooltip-format-activated": "Idle inhibitor {status}",
+        "tooltip-format-deactivated": "Idle inhibitor {status}"
     },
     "tray": {
         "icon-size": 15,
@@ -131,13 +134,14 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{icon}   {signalStrength}%",
-        "format-ethernet": "󰈀  Ethernet",
-        "tooltip": false,
+        "format-ethernet": "󰈀",
         "format-linked": "󰤭  {ifname} | No IP",
-        "format-disconnected": "󰤭   Disconnected",
-        "format-alt": "{icon}   {essid} | {ipaddr}",
+        "format-disconnected": "󰤭 ",
+        "format-alt": "{ifname} {essid}",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-	    "on-click-right": "kitty nmtui"
+	    "on-click-right": "ghostty nmtui",
+        "tooltip": true,
+        "tooltip-format": "{ipaddr}\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -183,9 +187,18 @@
     "custom/vpn": {
         "format": "VPN ",
         "exec": "echo '{\"class\": \"connected\"}'",
-        "exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
+        "exec-if": "/bin/sh -c 'ip link show nordlynx > /dev/null 2>&1'",
         "return-type": "json",
-        "interval": 5
+        "interval": 5,
+        "on-click": "nordvpn disconnect"
+    },
+    
+    "custom/vpn": {
+      "format": "{}",
+      "exec": "~/.scripts/vpn-status.sh",
+      "return-type": "json",
+      "interval": 5,
+      "on-click": "/bin/bash -c '~/.scripts/vpn-toggle.sh'"
     },
 }
 
