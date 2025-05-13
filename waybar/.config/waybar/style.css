@@ -169,8 +169,8 @@ window#waybar.empty #window {
   border: 2px solid #6c6874;
   margin-left: 0px;
   margin-right: 3px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #custom-vpn.connected {
@@ -316,8 +316,8 @@ battery.critical:hover {
   margin-right: 3px;
   border-right: 0px;
   transition: 0.3s;
-  padding-right: 13px;
-  padding-left: 13px;
+  padding-right: 10px;
+  padding-left: 10px;
   border: 2px solid #6c6874;
 }
 
