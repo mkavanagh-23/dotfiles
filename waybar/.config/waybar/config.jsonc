@@ -139,7 +139,7 @@
         "format-disconnected": "󰤭 ",
         "format-alt": "{ifname} {essid}",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-	    "on-click-right": "ghostty nmtui",
+	    "on-click-right": "ghostty -e nmtui",
         "tooltip": true,
         "tooltip-format": "{ipaddr}\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
     },

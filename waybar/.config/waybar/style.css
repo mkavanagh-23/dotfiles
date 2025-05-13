@@ -35,13 +35,14 @@ tooltip {
   opacity: 1;
   padding: 0px 10px;
   margin: 0;
-  margin-top: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 /* Workspaces Module */
 #workspaces {
   border-radius: 10px;
-  margin-left: 5px;
+  margin-left: 3px;
   padding-right: 0px;
   padding-left: 5px;
   border: 2px solid #b4b1ba;
@@ -55,7 +56,7 @@ tooltip {
 #workspaces button {
   padding: 5px;
   color: #6c6874;
-  margin-right: 5px;
+  margin-right: 3px;
 }
 
 #workspaces button:hover {
@@ -91,8 +92,8 @@ tooltip {
 /* Window Module */
 #window {
   border-radius: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
   border: 2px solid #e29eca;
 }
 
@@ -119,7 +120,7 @@ window#waybar.empty #window {
 #clock {
   color: #f5a191;
   border-radius: 10px;
-  margin-left: 5px;
+  margin-left: 3px;
   border-right: 0px;
   transition: 0.3s;
   padding-right: 13px;
@@ -135,7 +136,7 @@ window#waybar.empty #window {
 
 #tray {
   border-radius: 10px;
-  margin-right: 5px;
+  margin-right: 3px;
   /*    padding: 0px 4px; */
   padding-left: 15px;
   padding-right: 15px;
@@ -157,7 +158,7 @@ window#waybar.empty #window {
   border-radius: 10px;
   border: 2px solid #6c6874;
   margin-left: 0px;
-  margin-right: 5px;
+  margin-right: 3px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -195,7 +196,7 @@ window#waybar.empty #window {
 #battery {
   color: #90b99f;
   border-radius: 0 10px 10px 0;
-  margin-right: 5px;
+  margin-right: 3px;
   padding-right: 15px;
   border-left: 0px;
   border-top: 2px solid #90b99f;
@@ -301,8 +302,8 @@ battery.critical:hover {
 #idle_inhibitor {
   color: #6c6874;
   border-radius: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
   border-right: 0px;
   transition: 0.3s;
   padding-right: 13px;

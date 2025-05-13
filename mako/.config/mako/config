@@ -1,5 +1,4 @@
-# Colors
-
+default-timeout=5000
 background-color=#161617
 text-color=#c9c7cd
 border-color=#b4b1ba
