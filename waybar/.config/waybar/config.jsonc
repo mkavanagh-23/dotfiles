@@ -185,15 +185,6 @@
     },
 
     "custom/vpn": {
-        "format": "VPN ",
-        "exec": "echo '{\"class\": \"connected\"}'",
-        "exec-if": "/bin/sh -c 'ip link show nordlynx > /dev/null 2>&1'",
-        "return-type": "json",
-        "interval": 5,
-        "on-click": "nordvpn disconnect"
-    },
-    
-    "custom/vpn": {
       "format": "{}",
       "exec": "~/.scripts/vpn-status.sh",
       "return-type": "json",
