@@ -72,6 +72,7 @@ else
   alias ssh-server='ssh $SERVER_USER@$SERVER_ADDRESS'
 fi
 
+alias pcirescan='sudo $HOME/.scripts/pcirescan.sh'
 alias sftp-server='sftp $SERVER_USER@$SERVER_ADDRESS:/downloads'
 alias sftp-jellyfin='sftp $JELLYFIN_USER@$JELLYFIN_ADDRESS'
 alias code-server='sshfs $SERVER_USER@$SERVER_ADDRESS:$HOME/code-files /mnt/code-server'

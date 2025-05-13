@@ -1,9 +1,10 @@
 #!/bin/bash
 # A script to rescan pci devices, run as root
-	
-#sleep 5
-#echo 1 > /sys/bus/pci/rescan
-#sleep 5
-echo 1 > /sys/bus/pci/rescan
 
-exit 0
+echo 1 | tee /sys/bus/pci/rescan > /dev/null
+if [[ $? == 0 ]]; then
+  echo "PCI devices rescanned successfully."
+  exit 0
+fi
+
+exit 1

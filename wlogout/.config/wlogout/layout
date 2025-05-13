@@ -24,7 +24,7 @@
 }
 {
     "label" : "pcirescan",
-    "action" : "kitty pcirescan",
+    "action" : "ghostty -e sudo ~/.scripts/pcirescan.sh",
     "text" : "PCI",
     "keybind" : "z"
 }

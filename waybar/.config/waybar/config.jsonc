@@ -190,9 +190,8 @@
       "exec": "~/.scripts/vpn-status.sh",
       "return-type": "json",
       "interval": 5,
-      "on-click": "/bin/bash -c '~/.scripts/vpn-toggle.sh'",
+      "on-click": "/bin/bash -c '~/.scripts/vpn-connect.sh'",
       "tooltip": true,
-      "tooltip-format": "Toggle VPN"
     },
 
     "custom/updates": {
@@ -203,7 +202,6 @@
       "interval": 3600, // Check for updates every hour
       "on-click": "ghostty -e ~/.scripts/update.sh",
       "tooltip": true,
-      "tooltip-format": "Install Package Updates"
     }
 }
 
