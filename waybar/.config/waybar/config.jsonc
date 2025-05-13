@@ -9,7 +9,7 @@
     // "width": 1280, // Waybar width
     // "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window", "custom/updates"],
     "modules-center": ["clock"],
     "modules-right": ["tray", "custom/vpn", "network", "battery", "pulseaudio#microphone", "pulseaudio", "backlight", "idle_inhibitor"],
     // Modules configuration
@@ -76,8 +76,9 @@
             "activated": "",
             "deactivated": ""
         },
-        "tooltip-format-activated": "Idle inhibitor {status}",
-        "tooltip-format-deactivated": "Idle inhibitor {status}"
+        "tooltip": true,
+        "tooltip-format-activated": "Toggle Idle Inhibitor\n({status})",
+        "tooltip-format-deactivated": "Toggle Idle Inhibitor\n({status})"
     },
     "tray": {
         "icon-size": 15,
@@ -141,7 +142,7 @@
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
 	    "on-click-right": "ghostty -e nmtui",
         "tooltip": true,
-        "tooltip-format": "{ipaddr}\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
+        "tooltip-format": "{ifname} ({ipaddr})\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -189,7 +190,19 @@
       "exec": "~/.scripts/vpn-status.sh",
       "return-type": "json",
       "interval": 5,
-      "on-click": "/bin/bash -c '~/.scripts/vpn-toggle.sh'"
+      "on-click": "/bin/bash -c '~/.scripts/vpn-toggle.sh'",
+      "tooltip": true,
+      "tooltip-format": "Toggle VPN"
     },
+
+    "custom/updates": {
+      "format": "{}",
+      "exec": "~/.scripts/updates-status.sh",
+      "return-type": "json",
+      "interval": 1800, // Check for updates every 30 min (1800 sec)
+      "on-click": "ghostty -e paru",
+      "tooltip": true,
+      "tooltip-format": "Install Package Updates"
+    }
 }
 

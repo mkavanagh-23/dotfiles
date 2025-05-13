@@ -24,6 +24,7 @@ tooltip {
 #window,
 #clock,
 #custom-vpn,
+#custom-updates,
 #tray,
 #network,
 #battery,
@@ -113,14 +114,23 @@ window#waybar #window:hover {
 window#waybar.empty #window {
   background-color: transparent;
   border-color: transparent;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#custom-updates {
+  color: #aca1cf;
+  border-radius: 10px;
+  margin-right: 3px;
+  border: 2px solid #aca1cf;
 }
 
 #clock {
   color: #f5a191;
   border-radius: 10px;
-  margin-left: 3px;
+  margin-left: 0px;
   border-right: 0px;
   transition: 0.3s;
   padding-right: 13px;
