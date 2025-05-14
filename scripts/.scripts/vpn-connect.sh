@@ -14,7 +14,7 @@ else
   done
 
   # Get the selection from the user
-  display_country=$(printf '%s\n' "${!country_map[@]}" | sort | rofi -i -dmenu -p "󰦝 Country  ")
+  display_country=$(printf '%s\n' "${!country_map[@]}" | sort | rofi -i -dmenu -p "󰦝  Country  ")
 
   # Exit if no country selected
   [[ -z "$display_country" ]] && notify-send "NordVPN" "No valid country selected" && exit 1
@@ -33,7 +33,7 @@ else
   done
 
   # Get the selection from the user
-  display_city=$(printf '%s\n' "${!city_map[@]}" | sort | rofi -i -dmenu -p "󰦝 City  ")
+  display_city=$(printf '%s\n' "${!city_map[@]}" | sort | rofi -i -dmenu -p "󰦝  City  ")
 
   # Exit if no city selected
   [[ -z "$display_city" ]] && notify-send "NordVPN" "No valid city selected" && exit 1
