@@ -29,15 +29,15 @@ if [ "$update_count" -eq 0 ]; then
 else
   if [ "$aur_updates" -eq 0 ]; then
     if [ "$update_count" -eq 1 ]; then
-      echo "{\"text\": \"󰚰 $update_count\", \"class\": \"active\", \"tooltip\": \"Install $update_count Update\"}"
+      echo "{\"text\": \"󰚰 $update_count\", \"class\": \"active\", \"tooltip\": \"$update_count Update\"}"
     else
-      echo "{\"text\": \"󰚰 $update_count\", \"class\": \"active\", \"tooltip\": \"Install $update_count Updates\"}"
+      echo "{\"text\": \"󰚰 $update_count\", \"class\": \"active\", \"tooltip\": \"$update_count Updates\"}"
     fi
   else
     if [ "$update_count" -eq 1 ]; then
-      echo "{\"text\": \"󰚰 $update_count ($aur_updates)\", \"class\": \"active\", \"tooltip\": \"Install $update_count AUR Update\"}"
+      echo "{\"text\": \"󰚰 $update_count ($aur_updates)\", \"class\": \"active\", \"tooltip\": \"$update_count Update (AUR)\"}"
     else
-      echo "{\"text\": \"󰚰 $update_count ($aur_updates)\", \"class\": \"active\", \"tooltip\": \"Install $update_count Updates\n($aur_updates AUR)\"}"
+      echo "{\"text\": \"󰚰 $update_count ($aur_updates)\", \"class\": \"active\", \"tooltip\": \"$update_count Updates ($aur_updates AUR)\"}"
     fi
   fi
 fi

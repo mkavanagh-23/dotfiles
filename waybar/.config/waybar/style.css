@@ -266,6 +266,7 @@ battery.critical:hover {
   border-top: 2px solid #92a2df;
   border-right: 0px;
   border-bottom: 2px solid #92a2df;
+  padding-right: 0px;
 }
 
 #pulseaudio:hover {
@@ -278,6 +279,7 @@ battery.critical:hover {
   border-left: 2px solid #92a2df;
   border-right: 0px;
   padding-left: 15px;
+  padding-right: 10px;
 }
 
 #pulseaudio.microphone:hover {
@@ -306,7 +308,8 @@ battery.critical:hover {
   border-right: 2px solid #92a2d5;
   border-bottom: 2px solid #92a2d5;
   border-radius: 0px 10px 10px 0px;
-  padding-right: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 #backlight:hover {

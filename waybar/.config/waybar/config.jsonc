@@ -76,9 +76,7 @@
             "activated": "",
             "deactivated": ""
         },
-        "tooltip": true,
-        "tooltip-format-activated": "Toggle Idle Inhibitor\n({status})",
-        "tooltip-format-deactivated": "Toggle Idle Inhibitor\n({status})"
+        "tooltip": false
     },
     "tray": {
         "icon-size": 15,
@@ -107,7 +105,7 @@
     },
     "backlight": {
         "device": "acpi_video0",
-        "format": "{percent}%  {icon} ",
+        "format": "{icon}",
 	    "format-icons": ["󰛩", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
         "on-scroll-up": "brightnessctl --device=acpi_video0 set 1%+",
         "on-scroll-down": "brightnessctl --device=acpi_video0 set 1%-",
@@ -115,7 +113,8 @@
         "min-length": 6,
         "scroll-step": 0.5,
         "reverse-scrolling": true,
-        "tooltip": false
+        "tooltip": true,
+        "tooltip-format": "Backlight {percent}%"
     },
     "battery": {
         "bat": "BAT0",
@@ -124,13 +123,14 @@
             "warning": 40,
             "critical": 20
         },
-        "format": "{capacity}%  {icon}",
-        "format-charging": "{capacity}%  󰂄",
-        "format-plugged": "{capacity}% 󰚥",
-        "format-alt": "{time}  {icon}",
+        "format": "{icon}",
+        "format-charging": "󰂄",
+        "format-plugged": "󰚥",
+        "format-alt": "{capacity}%  {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": [" ", " ", " ", " ", " "]
+        "format-icons": [" ", " ", " ", " ", " "],
+        "tooltip": true
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -146,10 +146,10 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{icon}  {volume}%",
-        "format-bluetooth": "{icon}  {volume}%",
-        "format-bluetooth-muted": "󰟎   Mute",
-        "format-muted": "󰝟  Mute",
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
+        "format-bluetooth-muted": "󰟎 ",
+        "format-muted": "󰝟",
         "format-icons": {
             "headphone": "󰋋 ",
             "hands-free": " ",
@@ -164,11 +164,13 @@
         "on-scroll-up": "pamixer -i 1",
         "on-scroll-down": "pamixer -d 1",
         "reverse-scrolling": true,
-        "scroll-step": 0.5
+        "scroll-step": 0.5,
+        "tooltip": true,
+        "tooltip-format": "Volume {volume}%\n{desc}"
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": "  {volume}%",
+        "format-source": "",
         "format-source-muted": "",
         "on-click": "pamixer --default-source -t",
         "on-scroll-up": "pamixer --default-source -i 2",
