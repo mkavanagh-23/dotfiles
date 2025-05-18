@@ -2,14 +2,51 @@
 /* Author: Newman Sanchez (https://github.com/newmanls) */
 
 * {
-    bg0:    #161617F2;
-    bg1:    #2A2A2A;
-    bg2:    #3D3D3D80;
-    bg3:    #F5A191;
-    fg0:    #C9C7CD;
-    fg1:    #FFFFFF;
-    fg2:    #969696;
-    fg3:    #4F4F4F;
+
+        bg:             #161617;
+        bgalpha:        #16161722;
+        fg:             #c9c7cd;
+        fgalpha:        #c9c7cd22;
+        subtext1:       #b4b1ba;
+        subtext1alpha:  #b4b1ba22;
+        subtext2:       #9f9ca6;
+        subtext2alpha:  #9f9ca622;
+        subtext3:       #8b8693;
+        subtext3alpha:  #8b869322;
+        subtext4:       #6c6874;
+        subtext4alpha:  #6c687422;
+        bgdark:         #131314;
+        bgdarkalpha:    #13131422;
+        black:          #27272a;
+        blackalpha:     #27272a22;
+        red:            #ea83a5;
+        redalpha:       #ea83a522;
+        green:          #90b99f;
+        greenalpha:     #90b99f22;
+        yellow:         #e6b99d;
+        yellowalpha:    #e6b99d22;
+        purple:         #aca1cf;
+        purplealpha:    #aca1cf22;
+        magenta:        #e29eca;
+        magentaalpha:   #e29eca22;
+        orange:         #f5a191;
+        orangealpha:    #f5a19122;
+        blue:           #92a2d5;
+        bluealpha:      #92a2d522;
+        cyan:           #85b5ba;
+        cyanalpha:      #85b5ba22;
+        gray0:          #18181a;
+        gray0alpha:     #18181a22;
+        gray1:          #1b1b1c;
+        gray1alpha:     #1b1b1c22;
+        gray2:          #2a2a2c;
+        gray2alpha:     #2a2a2c22;
+        gray3:          #313134;
+        gray3alpha:     #31313422;
+        gray4:          #3b3b3e;
+        gray4alpha:     #3b3b3e22;
+        gray5:          #444448;
+        gray5alpha:     #44444822;
 }
 
 @import "template/rounded.rasi"
