@@ -2,6 +2,7 @@
 
 *{
   background: @bgAlpha;
+  background-color: @bgAlpha;
   border: none;
   font-family: 'NotoSans Nerd Font', FontAwesome, Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -31,7 +32,6 @@
 }
 
 tooltip {
-  background: @bgAlpha;
   color: @fg;
   border-color: @fg;
   border-radius: 10px;
@@ -45,6 +45,7 @@ tooltip {
 }
 
 #workspaces button {
+  background: transparent;
   margin-right: 3px;
   padding: 5px;
   color: @subtext4;

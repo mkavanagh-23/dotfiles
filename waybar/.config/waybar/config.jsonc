@@ -86,7 +86,7 @@
     "format-ethernet": "󰈀",
     "format-linked": "󰤭  {ifname} | No IP",
     "format-disconnected": "󰤭 ",
-    "format-alt": "{ifname} {essid}",
+    "format-alt": "[{ifname}] {essid}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "on-click-right": "ghostty -e nmtui",
     "tooltip": true,
