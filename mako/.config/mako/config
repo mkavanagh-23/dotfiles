@@ -1,9 +1,9 @@
 default-timeout=5000
-background-color=#161617
+background-color=#16161744
 text-color=#c9c7cd
-border-color=#b4b1ba
-border-radius=5
-progress-color=over #313244
+border-color=#6c6874
+border-radius=10
 
 [urgency=high]
 border-color=#e29eca
+text-color=#e29eca
