@@ -8,7 +8,6 @@
   font-size: 16px;
   font-weight: bold;font-size: 16px;
   font-weight: bold;
-  transition: 0.3s;
 }
 
 #workspaces,
@@ -41,6 +40,7 @@ tooltip {
 
 /* Left Modules */
 #workspaces {
+  margin-right: 0px;
   padding-right: 0px;
 }
 
@@ -60,11 +60,14 @@ tooltip {
 }
 
 #window {
-  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: 0px;
+  padding-left: 5px;
   color: @magenta;
 }
 
 #custom-updates {
+  padding-left: 5px; 
   color: @purple;
 }
 

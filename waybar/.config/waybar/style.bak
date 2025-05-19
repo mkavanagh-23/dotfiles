@@ -1,4 +1,4 @@
-@import url("oldworld-colors.css");
+@import url("oldworld.css");
 
 * {
   border: none;
