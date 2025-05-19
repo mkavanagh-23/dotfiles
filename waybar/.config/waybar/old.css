@@ -1,0 +1,219 @@
+@import url("oldworld.css");
+
+* {
+  border: none;
+  border-radius: 0px;
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: 'NotoSans Nerd Font', FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  min-height: 0;
+  transition: 0.3s;
+}
+
+tooltip {
+  background: @bgAlpha;
+  color: @fg;
+  border-radius: 10px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: @fg;
+}
+
+#workspaces,
+#window,
+#clock,
+#custom-vpn,
+#custom-updates,
+#tray,
+#network,
+#battery,
+#pulseaudio,
+#bluetooth,
+#backlight,
+#idle_inhibitor {
+  background: @bgAlpha;
+  padding: 0px 10px;
+  margin: 3px 3px;
+  border-radius: 10px;
+}
+
+/* Workspaces Module */
+#workspaces {
+  padding-right: 0px;
+  padding-left: 5px;
+  border: 2px solid @subtext1;
+}
+
+#workspaces button {
+  padding: 5px;
+  background: @bg;
+  color: @subtext4;
+  margin-right: 3px;
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  color: @subtext2;
+  background: @gray3;
+}
+
+#workspaces button.urgent {
+  color: @red;
+}
+
+#workspaces button.empty {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/* Window Module */
+#window {
+  border: 2px solid @magenta;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: @magenta;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+  border-color: transparent;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#custom-updates {
+  color: @purple;
+  border: 2px solid @purple;
+}
+
+#clock {
+  color: @orange;
+  margin-left: 0px;
+  margin-right: 0px;
+  border-right: 0px;
+  padding-right: 13px;
+  padding-left: 13px;
+  border: 2px solid @orange;
+}
+
+#tray {
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 2px solid @subtext1;
+}
+
+#tray.empty {
+  background-color: transparent;
+  border-color: transparent;
+  border: 0px;
+}
+
+#custom-vpn {
+  color: @subtext4;
+  border: 2px solid @subtext4;
+}
+
+#custom-vpn.connected {
+  color: @red;
+  border: 2px solid @red;
+}
+
+#network {
+  color: @purple;
+  border-radius: 10px 0px 0px 10px;
+  margin-right: 0px;
+  padding-left: 15px;
+  border-left: 2px solid @green;
+  border-top: 2px solid @green;
+  border-right: 0px;
+  border-bottom: 2px solid @green;
+}
+
+#network.disconnected {
+  color: @subtext4;
+}
+
+#battery {
+  color: @green;
+  border-radius: 0 10px 10px 0;
+  margin-left: 0px;
+  padding-right: 15px;
+  border-left: 0px;
+  border-top: 2px solid @green;
+  border-right: 2px solid @green;
+  border-bottom: 2px solid @green;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.good {
+  color: @yellow;
+}
+
+#battery.warning {
+  color: @orange;
+}
+
+#battery.critical {
+  color: @red;
+}
+
+#pulseaudio {
+  color: @blue;
+  margin-right: 0px;
+  margin-left: 0px;
+  border-left: 0px;
+  border-top: 2px solid @blue;
+  border-right: 0px;
+  border-bottom: 2px solid @blue;
+  padding-right: 0px;
+  border-radius: 0px;
+}
+
+
+#pulseaudio.microphone {
+  margin-right: 0px;
+  margin-left: 3px;
+  border-radius: 10px 0px 0px 10px;
+  border-left: 2px solid @blue;
+  border-right: 0px;
+  padding-left: 15px;
+  padding-right: 10px;
+}
+
+#pulseaudio.muted {
+  color: @subtext4;
+}
+
+#backlight {
+  color: @yellow;
+  margin-left: 0px;
+  border-left: 0px;
+  border-top: 2px solid @blue;
+  border-right: 2px solid @blue;
+  border-bottom: 2px solid @blue;
+  border-radius: 0px 10px 10px 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#idle_inhibitor {
+  color: @subtext4;
+  border-right: 0px;
+  transition: 0.3s;
+  border: 2px solid @subtext4;
+}
+
+#idle_inhibitor.activated {
+  color: @yellow;
+  border: 2px solid @yellow;
+}

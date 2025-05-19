@@ -21,6 +21,8 @@
 #pulseaudio,
 #backlight,
 #idle_inhibitor {
+  background: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
   margin: 3px 5px;
   padding: 0px 10px;
   color: @fg;
@@ -39,15 +41,11 @@ tooltip {
 }
 
 /* Left Modules */
-#workspaces {
-  margin-right: 0px;
-  padding-right: 0px;
-}
 
 #workspaces button {
-  background: transparent;
   margin-right: 3px;
   padding: 5px;
+  background: @bgAlpha;
   color: @subtext4;
 }
 
@@ -60,14 +58,17 @@ tooltip {
 }
 
 #window {
-  padding-right: 0px;
-  margin-right: 0px;
-  padding-left: 5px;
   color: @magenta;
 }
 
+#window#waybar.empty #window {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 #custom-updates {
-  padding-left: 5px; 
   color: @purple;
 }
 
@@ -127,7 +128,6 @@ tooltip {
 }
 
 #idle_inhibitor {
-  padding-right: 20px;
   color: @subtext4;
 }
 
