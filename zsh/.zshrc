@@ -47,6 +47,9 @@ else
   export EDITOR='nvim'
 fi
 
+export TERM='xterm-ghostty'
+export TERMINAL='ghostty'
+
 # Set the manpager program
 export MANPAGER="nvim +Man!"
 
