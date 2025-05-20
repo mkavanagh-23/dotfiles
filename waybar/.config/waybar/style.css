@@ -8,6 +8,7 @@
   font-size: 16px;
   font-weight: bold;font-size: 16px;
   font-weight: bold;
+  transition: 0.05s;
 }
 
 #workspaces,
@@ -21,8 +22,6 @@
 #pulseaudio,
 #backlight,
 #idle_inhibitor {
-  background: rgba(0, 0, 0, 0);
-  background-color: rgba(0, 0, 0, 0);
   margin: 3px 5px;
   padding: 0px 10px;
   color: @fg;
