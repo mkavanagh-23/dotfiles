@@ -7,3 +7,4 @@ export GDK_BACKEND=wayland,x11,*
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
 export SDL_VIDEODRIVER=wayland,x11
 export CLUTTER_BACKEND=wayland
+export TERMINAL=ghostty
