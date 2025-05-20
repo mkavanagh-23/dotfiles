@@ -33,7 +33,7 @@ return {
           { buffer = bufnr, desc = "Get references" })
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover details" })
         vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Disgnostic messages" })
-        vim.diagnostic.config({ virtual_text = true })
+        vim.diagnostic.config({ virtual_text = false })
 
         -- Auto-format on save
         --vim.api.nvim_create_autocmd("BufWritePre", {
