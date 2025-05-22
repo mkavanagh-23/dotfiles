@@ -29,4 +29,10 @@
 
 //@theme "/usr/share/rofi/themes/iggy.rasi"
 
-@theme "/home/mattkavs/.local/share/rofi/themes/rounded-oldworld.rasi"
+//@theme "/home/mattkavs/.local/share/rofi/themes/rounded-oldworld.rasi"
+
+//@theme "/home/mattkavs/.local/share/rofi/themes/oldworld.rasi"
+
+//@theme "/home/mattkavs/.local/share/rofi/themes/oldworld-orange.rasi"
+
+@theme "/home/mattkavs/.local/share/rofi/themes/oldworld-orange.rasi"

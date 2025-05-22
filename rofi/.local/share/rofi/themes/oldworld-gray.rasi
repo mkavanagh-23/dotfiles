@@ -1,6 +1,8 @@
 /* ROUNDED THEME FOR ROFI */
 /* Author: Newman Sanchez (https://github.com/newmanls) */
 
+@import "colors/oldworld.rasi"
+
 * {
     font:   "NotoSans Nerd Font 12";
 
@@ -26,7 +28,7 @@ mainbox {
 }
 
 inputbar {
-    background-color:   @orangealpha;
+    background-color:   @subtext4alpha;
     border-color:       @gray2;
 
     border:         2px;
@@ -38,7 +40,7 @@ inputbar {
 }
 
 prompt {
-    text-color: @orange;
+    text-color: @subtext4;
 }
 
 entry {
@@ -83,7 +85,7 @@ element alternate active {
 }
 
 element selected normal, element selected active {
-    border-color: @orange;
+    border-color: @subtext4;
     border: 2px;
 }
 
