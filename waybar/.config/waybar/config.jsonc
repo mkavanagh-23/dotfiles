@@ -43,10 +43,12 @@
       "class<org.larusstone.qtspim>": " ",
       "class<libreoffice-writer>": " ",
       "class<libreoffice-startcenter>": "󰏆 ",
-    "class<mpv>": " ",
+      "class<mpv>": " ",
       "class<WebApp-ChatGPT0190>": "󱜸 ",
       "class<org.pwmt.zathura>": " ",
-      "class<obsidian>": "󱓧 "
+      "class<obsidian>": "󱓧 ",
+      "title<.*vim>": " ",
+      "class<Arduino IDE>": " "
     }   
   },
   "hyprland/window": {
