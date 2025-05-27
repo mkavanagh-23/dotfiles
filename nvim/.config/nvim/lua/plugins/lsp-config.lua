@@ -34,6 +34,8 @@ return {
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover details" })
         vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Disgnostic messages" })
         vim.diagnostic.config({ virtual_text = false })
+        -- Diagnostic lines between code lines instead of at end
+        vim.diagnostic.config({ virtual_lines = true })
 
         -- Auto-format on save
         --vim.api.nvim_create_autocmd("BufWritePre", {
