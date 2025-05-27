@@ -18,7 +18,7 @@ actions["Reboot"]="systemctl reboot"
 actions["Scan PCI Devices"]="ghostty -e sudo ~/.scripts/pcirescan.sh"
 
 # Prompt user using rofi in dmenu mode
-choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -p "System Menu")
+choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -p "System Menu" -i)
 
 # Run the corresponding command if valid choice was made
 if [[ -n "$choice" && -n "${actions[$choice]}" ]]; then
