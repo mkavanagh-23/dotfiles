@@ -24,7 +24,6 @@
     "window-rewrite-default": " ",
     "window-rewrite": {
       "title<.*youtube.*>": " ",
-      "title<.*amazon.*>": " ",
       "title<.*reddit.*>": " ",
       "title<.*Picture-in-Picture.*>": " ",
       "class<firefox>": " ",
@@ -47,7 +46,8 @@
       "class<WebApp-ChatGPT0190>": "󱜸 ",
       "class<org.pwmt.zathura>": " ",
       "class<obsidian>": "󱓧 ",
-      "title<.*vim>": " ",
+      "title<vim.*>": " ",
+      "title<nvim.*>": " ",
       "class<Arduino IDE>": " "
     }   
   },
