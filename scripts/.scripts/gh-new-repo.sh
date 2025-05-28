@@ -40,7 +40,7 @@ cd "$repo_name"
 echo "# $repo_name" > "README.md"
 
 # Prompt user for visibility selection
-visibility=$(printf "Public\nPrivate" | rofi -dmenu -p " Visibility ")
+visibility=$(printf "Public\nPrivate" | rofi -dmenu -theme oldworld-blue -p " Visibility ")
 
 # Set the repo_visible flag based on user selection
 case "$visibility" in
@@ -57,7 +57,7 @@ case "$visibility" in
 esac
 
 # Get the description from the user
-repo_desc=$(rofi -dmenu -p " Description ")
+repo_desc=$(rofi -dmenu -theme oldworld-blue -p " Description ")
 if [[ -z "$repo_desc" ]]; then
   notify-send "Cancelled" "No description provided."
   exit 1
