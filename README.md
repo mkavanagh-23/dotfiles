@@ -4,7 +4,8 @@ Themed with colors based on [OldWorld](https://github.com/dgox16/oldworld.nvim).
 
 Powered by: [Hyprland](https://github.com/hyprwm/Hyprland), [waybar](https://github.com/Alexays/Waybar), [Hyprlock](https://github.com/hyprwm/hyprlock), [wlogout](https://github.com/ArtsyMacaw/wlogout), and [wofi](https://hg.sr.ht/~scoopta/wofi).
 <div align="center">
-    <img src="https://github.com/mkavanagh-23/dotfiles/blob/6e1c76dc5d8a2f24ccdf0178132c46408530181b/screenshots/oldworld_desktop.png" width="640" height="360"/>
+    <img src="https://github.com/mkavanagh-23/dotfiles/blob/e3ce95ec50e0e9bf6d60c2fecade10522f35c2ae/screenshots/fetch_menu.png" width="640" height="360"/>
+    <img src="https://github.com/mkavanagh-23/dotfiles/blob/e3ce95ec50e0e9bf6d60c2fecade10522f35c2ae/screenshots/nvim_split.png" width="640" height="360"/>
 </div>
 
 This directory contains the dotfiles for my system. 
