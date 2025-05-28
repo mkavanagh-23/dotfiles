@@ -1,14 +1,14 @@
 #!/bin/bash
 
 if ! gh auth status &>/dev/null; then
-  notify-send "Error" "GitHub CLI is not authenticated."
+  notify-send "GitHub" "GH CLI is not authenticated."
   exit 1
 fi
 
 # Get the repo name from the user
 project_name=$(rofi -dmenu -theme oldworld-blue -p " Repo Name ")
 if [[ -z "${project_name// }" ]]; then
-  notify-send "Cancelled" "No repo name supplied."
+  notify-send "GitHub" "No repo name supplied."
   exit 1
 fi
 
@@ -21,7 +21,7 @@ repo_name=$(echo "$repo_name" | sed 's/^-*//')
 
 # Reject empty or .git
 if [[ -z "$repo_name" || "$repo_name" == ".git" ]]; then
-  notify-send "Cancelled" "Invalid repository name."
+  notify-send "GitHub" "Invalid repository name."
   exit 1
 fi
 
@@ -30,7 +30,7 @@ cd "$HOME/Documents/Projects" || { notify-send "Error" "Projects directory not f
 
 # Check for existing repos
 if [[ -d "$repo_name" ]]; then
-  notify-send "Cancelled" "A matching repo already exists."
+  notify-send "GitHub" "A matching repo already exists."
   exit 1
 fi
 
@@ -51,7 +51,7 @@ case "$visibility" in
     repo_visible="--private"
     ;;
   *)
-    notify-send "Cancelled" "No visibility selected."
+    notify-send "GitHub" "No visibility selected."
     exit 1
     ;;
 esac
@@ -59,7 +59,7 @@ esac
 # Get the description from the user
 repo_desc=$(rofi -dmenu -theme oldworld-blue -p " Description ")
 if [[ -z "$repo_desc" ]]; then
-  notify-send "Cancelled" "No description provided."
+  notify-send "GitHub" "No description provided."
   exit 1
 fi
 
@@ -81,7 +81,7 @@ git commit -m "Initial commit"
 git push -u origin main
 
 # Notify of success
-notify-send "Success" "Repository '$repo_name' created and pushed to GitHub."
+notify-send "GitHub" "Repository '$repo_name' created and pushed to GitHub."
 
 # Open the session in a new terminal
 ghostty -e "sleep 0.2 && tms open-session '$repo_name'"
