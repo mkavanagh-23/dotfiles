@@ -14,10 +14,6 @@ else
   ZSH_THEME="bureau"
 fi
 
-# Source the plugin for enhanved vi mode
-# Must first be installed from the AUR (zsh-vi-mode)
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
@@ -29,7 +25,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fast-syntax-highlighting kitty web-search colored-man-pages)
+plugins=(git fast-syntax-highlighting colored-man-pages fzf-zsh-plugin)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,9 +92,9 @@ fi
 alias la="ls -a"
 
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+--color=bg+:#3b3b3e,bg:#161617,spinner:#e6b99d,hl:#ea83a5 \
+--color=fg:#c9c7cd,header:#90b99f,info:#aca1cf,pointer:#f5e0dc \
+--color=marker:#e6b99d,fg+:#c9c7cd,prompt:#aca1cf,hl+:#e29eca"
 
 export PROMPT_EOL_MARK=''
 setopt PROMPT_SP
@@ -114,4 +110,3 @@ if [ "$TERM" != "tmux-256color" ]; then
       exec uwsm start hyprland.desktop
   fi
 fi
-
