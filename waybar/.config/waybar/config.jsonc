@@ -90,7 +90,7 @@
     "format-disconnected": "󰤭 ",
     "format-alt": "[{ifname}] {essid}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "on-click-right": "ghostty -e nmtui",
+    "on-click-right": "ghostty -e 'sleep 0.2 && nmtui'",
     "tooltip": true,
     "tooltip-format": "{ifname} ({ipaddr})\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
   },
