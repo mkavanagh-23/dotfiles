@@ -17,7 +17,7 @@ else
   display_country=$(printf '%s\n' "${!country_map[@]}" | sort | rofi -i -dmenu -p "󰦝  Country  " -theme oldworld-red)
 
   # Exit if no country selected
-  [[ -z "$display_country" ]] && notify-send "NordVPN" "No valid country selected" && exit 1
+  [[ -z "$display_country" ]] && notify-send -u critical "NordVPN" "No valid country selected" && exit 1
  
   # Map the selection back to the actual value
   country="${country_map[$display_country]}"
@@ -36,7 +36,7 @@ else
   display_city=$(printf '%s\n' "${!city_map[@]}" | sort | rofi -i -dmenu -p "󰦝  City  " -theme oldworld-red)
 
   # Exit if no city selected
-  [[ -z "$display_city" ]] && notify-send "NordVPN" "No valid city selected" && exit 1
+  [[ -z "$display_city" ]] && notify-send -u critical "NordVPN" "No valid city selected" && exit 1
 
   # Map the selection back to the actual value
   city="${city_map[$display_city]}"

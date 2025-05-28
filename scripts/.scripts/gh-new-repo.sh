@@ -10,7 +10,7 @@ project_dir="$HOME/Documents/Projects"
 
 # Get the current git user
 if ! gh auth status &>/dev/null; then
-  notify-send "GitHub" "GH CLI is not authenticated."
+  notify-send -u critical "GitHub" "GH CLI is not authenticated."
   exit 1
 fi
 gh_user=$(gh api user --jq .login)
@@ -18,7 +18,7 @@ gh_user=$(gh api user --jq .login)
 # Prompt user for project name
 project_name=$(dmenu_prompt " Repo Name ")
 if [[ -z "${project_name// }" ]]; then
-  notify-send "GitHub" "No repo name supplied."
+  notify-send -u critical "GitHub" "No repo name supplied."
   exit 1
 fi
 
@@ -29,7 +29,7 @@ repo_name=$(echo "$project_name" | tr -cd 'A-Za-z0-9._-')
 repo_name=$(echo "$repo_name" | sed 's/^-*//')
 # Reject empty or .git
 if [[ -z "$repo_name" || "$repo_name" == ".git" ]]; then
-  notify-send "GitHub" "Invalid repository name."
+  notify-send -u critical "GitHub" "Invalid repository name."
   exit 1
 fi
 
@@ -38,7 +38,7 @@ cd "$project_dir" || { notify-send "Error" "Projects directory does not exist: $
 
 # Check for existing repo
 if [[ -d "$repo_name" ]]; then
-  notify-send "GitHub" "A matching repo already exists."
+  notify-send -u critical "GitHub" "A matching repo already exists."
   exit 1
 fi
 
@@ -61,7 +61,7 @@ case "$visibility" in
     repo_visible="--private"
     ;;
   *)
-    notify-send "GitHub" "No visibility selected."
+    notify-send -u critical "GitHub" "No visibility selected."
     exit 1
     ;;
 esac
@@ -69,7 +69,7 @@ esac
 # Prompt user for description
 repo_desc=$(dmenu_prompt " Description ")
 if [[ -z "$repo_desc" ]]; then
-  notify-send "GitHub" "No description provided."
+  notify-send -u critical "GitHub" "No description provided."
   exit 1
 fi
 
