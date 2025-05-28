@@ -36,6 +36,12 @@ return {
         vim.diagnostic.config({ virtual_text = false })
         -- Diagnostic lines between code lines instead of at end
         vim.diagnostic.config({ virtual_lines = true })
+        -- Set keymap to toggle inline diagnostics
+        vim.keymap.set('n', 'gK', function()
+          local new_config = not vim.diagnostic.config().virtual_lines
+          vim.diagnostic.config({ virtual_lines = new_config })
+        end, { desc = 'Toggle diagnostic virtual_lines' })
+
 
         -- Auto-format on save
         --vim.api.nvim_create_autocmd("BufWritePre", {

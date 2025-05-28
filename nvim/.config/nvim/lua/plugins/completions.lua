@@ -76,7 +76,10 @@ return {
           { name = 'luasnip' }, -- For luasnip users.
         }, {
           { name = 'buffer' },
-        })
+        }),
+        formatting = {
+          format = require("nvim-highlight-colors").format
+        }
       })
     end
   }
