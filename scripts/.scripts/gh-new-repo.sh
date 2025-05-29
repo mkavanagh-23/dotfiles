@@ -10,16 +10,16 @@ project_dir="$HOME/Documents/Projects"
 
 # Get the current git user
 if ! gh auth status &>/dev/null; then
-  notify-send -u critical "GitHub" "GH CLI is not authenticated. Please run 'gh auth login' and try again."
+  notify-send -u critical " GitHub" "GH CLI is not authenticated. Please run 'gh auth login' and try again."
   exit 1
 fi
 gh_user=$(gh api user --jq .login)
-notify-send "GitHub" "Authenticated as user '$gh_user'"
+notify-send " GitHub" "Authenticated as user '$gh_user'"
 
 # Prompt user for project name
 project_name=$(dmenu_prompt " Repo Name ")
 if [[ -z "${project_name// }" ]]; then
-  notify-send -u critical "GitHub" "No repo name supplied."
+  notify-send -u critical " GitHub" "No repo name supplied."
   exit 1
 fi
 
@@ -32,17 +32,17 @@ repo_name=$(echo "$repo_name" | tr -cd 'A-Za-z0-9._-')
 repo_name=$(echo "$repo_name" | sed 's/^-*//')
 # Reject empty or .git
 if [[ -z "$repo_name" || "$repo_name" == ".git" ]]; then
-  notify-send -u critical "GitHub" "Invalid repository name."
+  notify-send -u critical " GitHub" "Invalid repository name."
   exit 1
 else
-  notify-send "Github" "Parsed repo name: '$repo_name'"
+  notify-send " Github" "Parsed repo name: '$repo_name'"
 fi
 
 # Check for project dir
 if [[ ! -d "$project_dir" ]]; then
-  notify-send "GitHub" "Could not find existing projects directory"
+  notify-send " GitHub" "Could not find existing projects directory"
   mkdir "$project_dir"
-  notify-send "GitHub" "Created new projects directory at: '$project_dir'"
+  notify-send " GitHub" "Created new projects directory at: '$project_dir'"
 fi
 
 # Enter the projects directory
@@ -50,7 +50,7 @@ cd "$project_dir"
 
 # Check for existing repo
 if [[ -d "$repo_name" ]]; then
-  notify-send -u critical "GitHub" "A matching repo already exists."
+  notify-send -u critical " GitHub" "A matching repo already exists."
   exit 1
 fi
 
@@ -66,7 +66,7 @@ case "$visibility" in
     repo_visible="--private"
     ;;
   *)
-    notify-send -u critical "GitHub" "No visibility selected."
+    notify-send -u critical " GitHub" "No visibility selected."
     exit 1
     ;;
 esac
@@ -74,7 +74,7 @@ esac
 # Prompt user for description
 repo_desc=$(dmenu_prompt " Description ")
 if [[ -z "$repo_desc" ]]; then
-  notify-send -u critical "GitHub" "No description provided."
+  notify-send -u critical " GitHub" "No description provided."
   exit 1
 fi
 
@@ -100,7 +100,7 @@ git commit -m "Initial commit"
 git push -u origin main
 
 # Notify of success
-notify-send "GitHub" "Repository '$repo_name' created and pushed to GitHub: https://github.com/$gh_user/$repo_name"
+notify-send " GitHub" "Repository '$repo_name' created and pushed to GitHub: https://github.com/$gh_user/$repo_name"
 
 # Place any post-creation scripts/commands here
 # For example, automaticallt spawn a new tmux session in the newly created directory

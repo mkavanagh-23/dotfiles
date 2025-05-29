@@ -8,6 +8,8 @@ device=$(ls /dev | grep -E -i '^tty(ACM|USB)' | sort | rofi -dmenu -p "Serial De
 baudrate=$(printf "9600\n19200\n38400\n57600\n115200\n230400\n" | rofi -dmenu -p "Serial Baudrate:" -theme oldworld-green)
 [[ -z "$baudrate" ]] && exit 1  # Exit if nothing selected
 
+notify-send "󱎔 Serial Monitor" "Monitoring device on '/dev/$device' ($baudrate baud)"
+
 # Launch screen with selected device and baud rate
 ghostty -e 'sleep 0.2 && screen "/dev/$device" "$baudrate"'
 
