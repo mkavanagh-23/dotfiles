@@ -2,8 +2,9 @@ font=GeistMono Nerd Font 12
 default-timeout=5000
 background-color=#16161744
 text-color=#c9c7cd
-border-color=#6c6874
+border-color=#1b1b1c
 border-radius=10
+format=<b>%s</b>\n<i>%b</i>
 
 [urgency=high]
 border-color=#e29eca
