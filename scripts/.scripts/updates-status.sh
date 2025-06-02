@@ -1,43 +1,18 @@
 #!/bin/bash
 
-# Get the list of ignored packages
-ignored=$(awk -F '=' '/^IgnorePkg/ {gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}' /etc/pacman.conf)
+# Retrieve the list of package updates
+updates=$(checkupdates)
 
-# Get total number of available updates
-updates=$(paru -Qu)
+# Check the status to see if we have updates
+update_status=$?
 
-# Get number of available AUR updates
-aur_updates=$(paru -Qua | wc -l)
-
-# initialize the counter
-update_count=0
-
-# Process each line of the updates
-while IFS= read -r line; do
-    pkg_name=$(echo "$line" | awk '{print $1}')
-    # Skip ignored packages
-    if [[ " ${ignored[*]} " == *" ${pkg_name} "* ]]; then
-        continue
-    else
-        ((update_count++))
-    fi
-done <<< "$updates"
-
-# Determine the state for waybar
-if [ "$update_count" -eq 0 ]; then
-  echo '{"text": "", "class": "inactive"}'
+if [[ "$update_status" -eq 0 ]]; then
+  # Updates are available - return adctive module state
+  echo "{\"text\": \"󰚰\", \"class\": \"active\", \"tooltip\": \"Updates Available\"}"
 else
-  if [ "$aur_updates" -eq 0 ]; then
-    if [ "$update_count" -eq 1 ]; then
-      echo "{\"text\": \"󰚰\", \"class\": \"active\", \"tooltip\": \"$update_count Update\"}"
-    else
-      echo "{\"text\": \"󰚰\", \"class\": \"active\", \"tooltip\": \"$update_count Updates\"}"
-    fi
-  else
-    if [ "$update_count" -eq 1 ]; then
-      echo "{\"text\": \"󰚰\", \"class\": \"active\", \"tooltip\": \"$update_count Update (AUR)\"}"
-    else
-      echo "{\"text\": \"󰚰\", \"class\": \"active\", \"tooltip\": \"$update_count Updates ($aur_updates AUR)\"}"
-    fi
+  # No updates available - Return inactive module
+  if [[ "$update_status" -eq 1 ]]; then
+    notify-send "Updates" "Error checking for updates via pacman"
   fi
+  echo '{"text": "", "class": "inactive"}'
 fi
