@@ -1,18 +1,19 @@
 #!/bin/bash
+# Ensure the environment is sane
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
+export LANG="en_US.UTF-8"
+export HOME="${HOME:-/home/$(whoami)}"
+export TMPDIR="${TMPDIR:-/tmp}"
 
-# Retrieve the list of package updates
-updates=$(checkupdates)
+updates=$(checkupdates 2>/dev/null)
+exit_code=$?
 
-# Check the status to see if we have updates
-update_status=$?
-
-if [[ "$update_status" -eq 0 ]]; then
-  # Updates are available - return adctive module state
-  echo "{\"text\": \"󰚰\", \"class\": \"active\", \"tooltip\": \"Updates Available\"}"
+if [[ -n "$updates" ]]; then
+  count=$(echo "$updates" | wc -l)
+  # Sanitize the updates string for JSON
+  sanitized_updates=$(echo "$updates" | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/"/\\"/g')
+  echo "{\"text\": \"$count 󰚰\", \"class\": \"active\", \"tooltip\": \"$sanitized_updates\"}"
 else
-  # No updates available - Return inactive module
-  if [[ "$update_status" -eq 1 ]]; then
-    notify-send "Updates" "Error checking for updates via pacman"
-  fi
   echo '{"text": "", "class": "inactive"}'
 fi

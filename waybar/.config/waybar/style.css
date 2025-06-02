@@ -68,7 +68,8 @@ tooltip {
 }
 
 #custom-updates {
-  color: @purple;
+  color: @orange;
+  padding-right: 3px;
 }
 
 /* Right Modules */

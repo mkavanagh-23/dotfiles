@@ -10,9 +10,9 @@
   // "spacing": 4, // Gaps between modules (4px)
 
   // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces", "hyprland/window", "custom/updates"],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "custom/vpn", "network", "battery", "pulseaudio#microphone", "pulseaudio", "backlight", "idle_inhibitor"],
+  "modules-right": ["tray", "custom/updates", "custom/vpn", "network", "battery", "pulseaudio#microphone", "pulseaudio", "backlight", "idle_inhibitor"],
   
   // Modules configuration
   "hyprland/workspaces": {
