@@ -100,7 +100,7 @@ git commit -m "Initial commit"
 git push -u origin main
 
 # Notify of success
-notify-send " GitHub" "Repository '$repo_name' created and pushed to GitHub: https://github.com/$gh_user/$repo_name"
+notify-send " GitHub" "Repository '$repo_name' created and pushed to GitHub."
 
 # Place any post-creation scripts/commands here
 # For example, automaticallt spawn a new tmux session in the newly created directory
@@ -109,7 +109,8 @@ notify-send " GitHub" "Repository '$repo_name' created and pushed to GitHub: 
 ######### USER SCRIPTS #########
 
 # Or open the git repo in your web browser
-xdg-open "https://github.com/$gh_user/$repo_name"
+echo "https://github.com/$gh_user/$repo_name" | wl-copy
+notify-send " GitHub" "URL copied to system clipboard."
 
 # Open the session in a new terminal
 ghostty -e "sleep 0.2 && tms open-session '$repo_name'"
