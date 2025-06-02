@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Ensure the environment is sane
 export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
@@ -7,7 +8,8 @@ export HOME="${HOME:-/home/$(whoami)}"
 export TMPDIR="${TMPDIR:-/tmp}"
 
 updates=$(checkupdates 2>/dev/null)
-exit_code=$?
+aur_updates=$(paru -Qua 2>/dev/null)
+updates=$(printf "%s\n%s" "$updates" "$aur_updates" | grep -v '^$')
 
 if [[ -n "$updates" ]]; then
   count=$(echo "$updates" | wc -l)
