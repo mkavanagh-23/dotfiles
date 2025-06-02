@@ -7,5 +7,4 @@ border-radius=10
 format=<b>%s</b>\n<i>%b</i>
 
 [urgency=high]
-border-color=#e29eca
 text-color=#e29eca
