@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Check for updates from the Official Arch Linux Repositiories as well as the AUR
+# and return a json object for use in a custom waybar module
+
 # Set up variables
 cache_file="/tmp/waybar_updates_cache.json"
 lock_file="/tmp/waybar_updates.lock"
@@ -95,19 +98,7 @@ while (( tries > 0 )); do
   ((tries--))
 done
 
-echo "[$(date)] failed to read valid JSON with .class from cache after retries" >> /home/mattkavs/waybar_updates_debug.log
+echo "[$(date)] failed to read valid JSON with .class from cache after retries" >> "$HOME/waybar_updates_debug.log"
 echo '{"text": "", "class": "inactive", "tooltip": ""}'  # Fallback JSON
 exit 1
-
-## Output JSON result
-## Retry output read if cache is not immediately valid
-#tries=20
-#while (( tries > 0 )); do
-#  if [[ -f "$cache_file" ]] && jq -e '.text' "$cache_file" &>/dev/null; then
-#    jq -c 'del(.timestamp)' "$cache_file"
-#    exit 0
-#  fi
-#  sleep 0.1
-#  ((tries--))
-#done
 
