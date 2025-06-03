@@ -3,17 +3,22 @@
 # Check for updates from the Official Arch Linux Repositiories as well as the AUR
 # and return a json object for use in a custom waybar module
 
-# Set up variables
+# Setup environment for xdg-portal notifications on Wayland
 export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
+
+# Set the script vars
 cache_file="/tmp/waybar_updates_cache.json"
 lock_file="/tmp/waybar_updates.lock"
+notification_file="/tmp/waybar_updates.notify"
 ttl=10  # Seconds before requiring cache refresh, this helps ensure sync across monitors
+main_color="#92a2d5"
+aur_color="#90b99f"
 
-sleep 0.2  # Let the dust settle at login
+# Check for updates
+sleep 0.2  # Give a bit of time at boot
 (
-  # Script is executed once per monitor
-  # Block to prevent race condition
+  # Script is executed once per monitor - block to prevent race condition
   flock -n 9 || exit 0
 
   # Check if cache file exists and is fresh
@@ -36,9 +41,9 @@ sleep 0.2  # Let the dust settle at login
     tooltip=""
     while IFS= read -r line; do
       if echo "$aur_updates" | grep -Fxq "$line"; then
-        tooltip+="<span foreground='#90b99f'>$line</span>"$'\n'
+        tooltip+="<span foreground='$aur_color'>$line</span>"$'\n'
       else
-        tooltip+="<span foreground='#92a2d5'>$line</span>"$'\n'
+        tooltip+="<span foreground='$main_color'>$line</span>"$'\n'
       fi
     done <<< "$sorted"
 
@@ -69,12 +74,9 @@ sleep 0.2  # Let the dust settle at login
           tooltip: $tooltip,
           timestamp: $timestamp
         }' > "$cache_file"
-
-      # One-time refresh trigger after first boot
-      refresh_stamp="/tmp/waybar_updates_refreshed" # temp file tracks first boot
-      if [[ ! -f "$refresh_stamp" ]]; then
-        touch "$refresh_stamp"
-        pkill -RTMIN+8 waybar
+      if [[ ! -f "$notification_file" ]]; then
+        touch "$notification_file"
+        notify-send "󰚰 Update" "$update_count new updates available"
       fi
     else
       jq -c -n \
@@ -85,6 +87,13 @@ sleep 0.2  # Let the dust settle at login
           tooltip: "",
           timestamp: $timestamp
         }' > "$cache_file"
+    fi
+
+    # One-time refresh trigger after first boot
+    refresh_stamp="/tmp/waybar_updates_refreshed" # temp file tracks first boot
+    if [[ ! -f "$refresh_stamp" ]]; then
+      touch "$refresh_stamp"
+      pkill -RTMIN+8 waybar
     fi
   fi
 ) 9>"$lock_file"
@@ -100,7 +109,8 @@ while (( tries > 0 )); do
   ((tries--))
 done
 
-notify-send -u critical "󰚰 Updates" "Failed to read valid JSON from cache after $tries retries"
+# If we made it here something went horribly wrong
+notify-send -u critical "󰚰 updates-status.sh" "Failed to read valid JSON from cache after $tries retries"
 echo '{"text": "", "class": "inactive", "tooltip": ""}'  # Fallback JSON
 exit 1
 
