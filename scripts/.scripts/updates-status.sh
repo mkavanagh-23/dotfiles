@@ -4,6 +4,8 @@
 # and return a json object for use in a custom waybar module
 
 # Set up variables
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 cache_file="/tmp/waybar_updates_cache.json"
 lock_file="/tmp/waybar_updates.lock"
 ttl=10  # Seconds before requiring cache refresh, this helps ensure sync across monitors
@@ -98,7 +100,7 @@ while (( tries > 0 )); do
   ((tries--))
 done
 
-echo "[$(date)] failed to read valid JSON with .class from cache after retries" >> "$HOME/waybar_updates_debug.log"
+notify-send -u critical "󰚰 Updates" "Failed to read valid JSON from cache after $tries retries"
 echo '{"text": "", "class": "inactive", "tooltip": ""}'  # Fallback JSON
 exit 1
 
