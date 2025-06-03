@@ -84,16 +84,30 @@ sleep 0.2  # Let the dust settle at login
   fi
 ) 9>"$lock_file"
 
-
-# Output JSON result
-# Retry output read if cache is not immediately valid
-tries=20
+# Build the json output
+tries=100
 while (( tries > 0 )); do
-  if [[ -f "$cache_file" ]] && jq -e '.text' "$cache_file" &>/dev/null; then
-    jq -c 'del(.timestamp)' "$cache_file"
+  if output=$(jq -cre 'del(.timestamp) | select(.class)' "$cache_file" 2>/dev/null); then # Wait for valid json in the cache
+    echo "$output"
     exit 0
   fi
   sleep 0.1
   ((tries--))
 done
+
+echo "[$(date)] failed to read valid JSON with .class from cache after retries" >> /home/mattkavs/waybar_updates_debug.log
+echo '{"text": "", "class": "inactive", "tooltip": ""}'  # Fallback JSON
+exit 1
+
+## Output JSON result
+## Retry output read if cache is not immediately valid
+#tries=20
+#while (( tries > 0 )); do
+#  if [[ -f "$cache_file" ]] && jq -e '.text' "$cache_file" &>/dev/null; then
+#    jq -c 'del(.timestamp)' "$cache_file"
+#    exit 0
+#  fi
+#  sleep 0.1
+#  ((tries--))
+#done
 
