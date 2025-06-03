@@ -28,20 +28,37 @@ fi
   if (( now - last_updated > ttl )); then
     updates=$(checkupdates 2>/dev/null)
     aur_updates=$(paru -Qua 2>/dev/null)
-    updates=$(printf "%s\n%s" "$updates" "$aur_updates" | grep -v '^$' | sort)
-    update_count=$(echo "$updates" | wc -l)
+
+  # Colorless, sorted
+  sorted=$(printf "%s\n%s" "$updates" "$aur_updates" | grep -v '^$' | sort)
+  
+  # Color after sort
+  tooltip=""
+  while IFS= read -r line; do
+    if echo "$aur_updates" | grep -Fxq "$line"; then
+      tooltip+="<span foreground='#90b99f'>$line</span>"$'\n'
+    else
+      tooltip+="<span foreground='#92a2d5'>$line</span>"$'\n'
+    fi
+  done <<< "$sorted"
+
+    update_count=$(echo "$sorted" | wc -l)
     
     # Display updates if available
     if (( update_count > 0 )); then
       # Sanitize for JSON
-      tooltip="$updates"
+      tooltip="${tooltip%$'\n'}" # trim trailing newlinw
+      tooltip="${tooltip//->/  }" # nerdfont symbols instead of ascii
+      
+      # And calculate the update count
       if [[ -n "$aur_updates" ]]; then
         aur_count=$(echo "$aur_updates" | wc -l)
         text="$update_count ($aur_count)  󰚰"
       else
         text="$update_count 󰚰"
       fi
-
+      
+      # Return the json string
       jq -c -n \
         --arg text "$text" \
         --arg tooltip "$tooltip" \

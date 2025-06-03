@@ -63,6 +63,7 @@
     "interval": 1800,
     "on-click": "ghostty -e ~/.scripts/update.sh",
     "tooltip": true,
+    "tooltip-markup": "pango"
   },
   "clock": {
     // "timezone": "America/New_York",
