@@ -16,6 +16,7 @@ main_color="#92a2d5"
 aur_color="#90b99f"
 last_updated=0
 prior_count=0
+max_retries=50 # Num times to try to fetch data while waiting to prevent race
 
 # Check for updates
 sleep 0.2  # Give a bit of time at boot
@@ -114,7 +115,7 @@ sleep 0.2  # Give a bit of time at boot
 ) 9>"$lock_file"
 
 # Build the json output
-tries=100
+tries=$max_retries
 while (( tries > 0 )); do
   if output=$(jq -cre 'del(.timestamp) | select(.class)' "$cache_file" 2>/dev/null); then # Wait for valid json in the cache
     echo "$output"
@@ -125,7 +126,8 @@ while (( tries > 0 )); do
 done
 
 # If we made it here something went horribly wrong
-notify-send -u critical "󰚰 updates-status.sh" "Failed to read valid JSON from cache after $tries retries"
+retries=$((max_retries - tries))
+notify-send -u critical "󰚰 updates-status.sh" "Failed to read valid JSON from cache after $retries retries"
 echo '{"text": "", "class": "inactive", "tooltip": ""}'  # Fallback JSON
 exit 1
 
