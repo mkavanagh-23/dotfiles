@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cache_file="/tmp/waybar_updates_cache.json"
-notification_file="/tmp/waybar_updates.notify"
+notification_file="/tmp/waybar_updates_notify"
 
 # Run paru interactively
 paru -Syu --review --sudoloop

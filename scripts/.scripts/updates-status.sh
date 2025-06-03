@@ -10,10 +10,12 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 # Set the script vars
 cache_file="/tmp/waybar_updates_cache.json"
 lock_file="/tmp/waybar_updates.lock"
-notification_file="/tmp/waybar_updates.notify"
+notification_file="/tmp/waybar_updates_notify"
 ttl=10  # Seconds before requiring cache refresh, this helps ensure sync across monitors
 main_color="#92a2d5"
 aur_color="#90b99f"
+last_updated=0
+prior_count=0
 
 # Check for updates
 sleep 0.2  # Give a bit of time at boot
@@ -25,9 +27,13 @@ sleep 0.2  # Give a bit of time at boot
   now=$(date +%s)
   
   if [[ -f "$cache_file" ]]; then
+    # Get the time of last update
     last_updated=$(jq -r '.timestamp // 0' "$cache_file" 2>/dev/null)
-  else
-    last_updated=0
+    # Get the count of last update
+    cached_text=$(jq -r '.text // ""' "$cache_file" 2>/dev/null)
+    if [[ $cached_text =~ ^([0-9]+) ]]; then
+      prior_count="${BASH_REMATCH[1]}"
+    fi
   fi
 
   if (( now - last_updated > ttl )); then
@@ -52,7 +58,7 @@ sleep 0.2  # Give a bit of time at boot
     # Display updates if available
     if (( update_count > 0 )); then
       # Sanitize for JSON
-      tooltip="${tooltip%$'\n'}" # trim trailing newlinw
+      tooltip="${tooltip%$'\n'}" # trim trailing newline
       tooltip="${tooltip//->/  }" # nerdfont symbols instead of ascii
 
       # And calculate the update count
@@ -74,9 +80,18 @@ sleep 0.2  # Give a bit of time at boot
           tooltip: $tooltip,
           timestamp: $timestamp
         }' > "$cache_file"
+      # Check for count change for notification trigger
+      if(( update_count > prior_count )); then
+        rm -f "$notification_file"
+      fi
+      # Trigger the notification
       if [[ ! -f "$notification_file" ]]; then
         touch "$notification_file"
-        notify-send "󰚰 Update" "$update_count new updates available"
+        if [[ $update_count -eq 1 ]]; then
+          notify-send "󰚰 System Update" "$update_count new update available"
+        else
+          notify-send "󰚰 System Update" "$update_count new updates available"
+        fi
       fi
     else
       jq -c -n \
