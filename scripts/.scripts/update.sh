@@ -4,19 +4,22 @@
 # To be used alongside updates-status.sh as an 'on-click' exec
 # This sctipt will reset the notification state and force a module refresh when complete
 
-# Set the cached filepaths
-cache_file="/tmp/waybar_updates_cache.json"
-notification_file="/tmp/waybar_updates_notify"
-waybar_pid=8
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
+
+post_update_script="$HOME/.scripts/update-timer.sh"
 
 # Run paru interactively
-paru -Syu --review --sudoloop
+paru -Syu --review --sudoloop || {
+  notify-send -u critical "Updates" "Update cancelled or failed"
+  exit 1
+}
 
-# Invalidate the cache before restarting the module
-rm -f "$cache_file"
-
-# Send signal to Waybar to refresh the module
-pkill -RTMIN+$waybar_pid waybar
-
-# Remove the notificaion flag
-rm -f "$notification_file"
+# Post update script
+if [[ -x "$post_update_script" ]]; then
+  "$post_update_script"
+  exit 0
+else
+  notify-send -u critical "Updates" "Helper script not found or not executable"
+  exit 2
+fi
