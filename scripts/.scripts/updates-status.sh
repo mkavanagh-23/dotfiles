@@ -11,12 +11,14 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 cache_file="/tmp/waybar_updates_cache.json"
 lock_file="/tmp/waybar_updates.lock"
 notification_file="/tmp/waybar_updates_notify"
+refresh_stamp="/tmp/waybar_updates_refreshed" # temp file tracks first boot
 ttl=10  # Seconds before requiring cache refresh, this helps ensure sync across monitors
 main_color="#92a2d5"
 aur_color="#90b99f"
 last_updated=0
 prior_count=0
 max_retries=50 # Num times to try to fetch data while waiting to prevent race
+waybar_pid=8 # to restart the module when needed
 
 # Check for updates
 sleep 0.2  # Give a bit of time at boot
@@ -106,10 +108,9 @@ sleep 0.2  # Give a bit of time at boot
     fi
 
     # One-time refresh trigger after first boot
-    refresh_stamp="/tmp/waybar_updates_refreshed" # temp file tracks first boot
     if [[ ! -f "$refresh_stamp" ]]; then
       touch "$refresh_stamp"
-      pkill -RTMIN+8 waybar
+      pkill -RTMIN+$waybar_pid waybar
     fi
   fi
 ) 9>"$lock_file"
