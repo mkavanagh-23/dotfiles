@@ -6,9 +6,9 @@
 # Set the script vars
 cache_file="/tmp/waybar_updates_cache.json"
 notification_file="/tmp/waybar_updates_notify"
+init_file="/tmp/waybar_updates_init"
 main_color="#92a2d5"
 aur_color="#90b99f"
-waybar_signal=8 # to restart the module when needed
 
 updates=$(checkupdates 2>/dev/null)
 aur_updates=$(paru -Qua 2>/dev/null)
@@ -73,9 +73,14 @@ fi
 #Check for notification reset
 if [[ "$update_count" -ne "$prior_count" ]]; then
   rm -f "$notification_file"
+  killall waybar && waybar
 fi
 
-# Restart waybar
-killall waybar && waybar
+if [[ ! -f "$init_file" ]]; then
+  touch "$init_file"
+
+  # Restart waybar
+  killall waybar && waybar
+fi
 
 exit 0
