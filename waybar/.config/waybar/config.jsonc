@@ -68,7 +68,7 @@
   },
   "clock": {
     // "timezone": "America/New_York",
-    "format": "󰳗  {:%H:%M}",
+    "format": "  {:%H:%M}",
     "format-alt": "{:%A  |  %H:%M  |  %e %B}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
