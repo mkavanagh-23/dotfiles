@@ -1,0 +1,7 @@
+[Unit]
+Description=Populate update cache for Waybar
+
+[Service]
+Type=oneshot
+ExecStart=%h/.scripts/update-timer.sh
+

@@ -1,0 +1,11 @@
+[Unit]
+Description=Run updates cache checker every 10 minutes
+
+[Timer]
+OnBootSec=30
+OnUnitActiveSec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+

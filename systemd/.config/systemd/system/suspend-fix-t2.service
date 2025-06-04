@@ -1,0 +1,21 @@
+[Unit]
+Description=Disable and Re-Enable Apple BCE Module (and Wi-Fi)
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+User=root
+Type=oneshot
+RemainAfterExit=yes
+
+#ExecStart=/usr/bin/modprobe -r brcmfmac_wcc
+#ExecStart=/usr/bin/modprobe -r brcmfmac
+ExecStart=/usr/bin/rmmod -f apple-bce
+
+ExecStop=/usr/bin/modprobe apple-bce
+#ExecStop=/usr/bin/modprobe brcmfmac
+#ExecStop=/usr/bin/modprobe brcmfmac_wcc
+ExecStop=/usr/local/scripts/pcirescanboot.sh
+
+[Install]
+WantedBy=sleep.target

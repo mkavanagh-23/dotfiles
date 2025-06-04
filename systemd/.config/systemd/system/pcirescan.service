@@ -1,0 +1,12 @@
+[Unit]
+Description=Scan connected PCI devices at boot
+Wants=bolt.service
+After=polkit.service bolt.service
+Needs=polkit.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/scripts/pcirescanboot.sh
+
+[Install]
+WantedBy=multi-user.target
