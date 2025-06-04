@@ -36,13 +36,13 @@
         cyan:           #85b5ba;
         cyanalpha:      #85b5ba22;
         gray0:          #18181a;
-        gray0alpha:     #18181a22;
+        gray0alpha:     #18181a66;
         gray1:          #1b1b1c;
         gray1alpha:     #1b1b1c22;
         gray2:          #2a2a2c;
         gray2alpha:     #2a2a2c22;
         gray3:          #313134;
-        gray3alpha:     #31313422;
+        gray3alpha:     #31313466;
         gray4:          #3b3b3e;
         gray4alpha:     #3b3b3e22;
         gray5:          #444448;

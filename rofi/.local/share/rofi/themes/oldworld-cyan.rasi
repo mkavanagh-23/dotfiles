@@ -6,7 +6,7 @@
 * {
     font:   "NotoSans Nerd Font 12";
 
-    background-color:   @gray2alpha;
+    background-color:   @gray0alpha;
     text-color:         @fg;
 
     margin:     0px;
@@ -19,17 +19,18 @@ window {
     y-offset:       calc(50% - 176px);
     width:          480;
     border-radius:  10px;
-    border-color:   @gray1;
+    border-color:   transparent;
     border: 2px;
 }
 
 mainbox {
     padding:    12px;
+    background-color: transparent;
 }
 
 inputbar {
     background-color:   @cyanalpha;
-    border-color:       @gray2;
+    border-color:       @cyan;
 
     border:         2px;
     border-radius:  10px;
@@ -41,11 +42,13 @@ inputbar {
 
 prompt {
     text-color: @cyan;
+    background-color: transparent;
 }
 
 entry {
     placeholder:        "Search...";
     placeholder-color:  @subtext2;
+    background-color: transparent;
 }
 
 message {
@@ -60,8 +63,9 @@ textbox {
 }
 
 listview {
-    background-color:   @gray5alpha;
+    background-color:   @gray3alpha;
     border-radius: 10px;
+    border-corlor: @black;
 
     margin:     12px 0 0;
     lines:      8;
@@ -74,6 +78,7 @@ element {
     padding:        8px 16px;
     spacing:        8px;
     border-radius:  10px;
+    background-color: transparent;
 }
 
 element normal active {
@@ -92,8 +97,10 @@ element selected normal, element selected active {
 element-icon {
     size:           1em;
     vertical-align: 0.5;
+    background-color: transparent;
 }
 
 element-text {
     text-color: inherit;
+    background-color: transparent;
 }

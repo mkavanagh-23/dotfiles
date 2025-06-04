@@ -36,3 +36,8 @@
 //@theme "/home/mattkavs/.local/share/rofi/themes/oldworld-orange.rasi"
 
 @theme "/home/mattkavs/.local/share/rofi/themes/oldworld-orange.rasi"
+
+configuration {
+    icon-theme: "Kanagawa";
+    fallback-application-icon: "applications-other";
+}
