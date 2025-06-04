@@ -9,9 +9,14 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 # Set the script vars
 cache_file="/tmp/waybar_updates_cache.json"
 notification_file="/tmp/waybar_updates_notify"
+init_file="/tmp/waybar_updates_init"
+
+# Wait for updatecheck init
+while [ ! -f "$init_file" ]; do
+  sleep 1
+done
 
 if [[ -f "$cache_file" ]]; then
-
   if [[ ! -f "$notification_file" ]]; then
     touch "$notification_file"
     # Extract the update count
@@ -30,7 +35,6 @@ if [[ -f "$cache_file" ]]; then
       fi
     fi
   fi
-
   # Return the updated json string
   cat "$cache_file"
 else

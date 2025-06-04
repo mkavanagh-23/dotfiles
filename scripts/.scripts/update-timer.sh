@@ -9,6 +9,7 @@ notification_file="/tmp/waybar_updates_notify"
 init_file="/tmp/waybar_updates_init"
 main_color="#92a2d5"
 aur_color="#90b99f"
+prior_count=0
 
 updates=$(checkupdates 2>/dev/null)
 aur_updates=$(paru -Qua 2>/dev/null)
@@ -70,17 +71,16 @@ else
     }' > "$cache_file"
 fi
 
-#Check for notification reset
+# Check for notification reset
 if [[ "$update_count" -ne "$prior_count" ]]; then
-  rm -f "$notification_file"
-  killall waybar && waybar
+  if [[ -f "$notification_file" ]]; then
+    rm -f "$notification_file"
+  fi
 fi
 
+# Mark initialization
 if [[ ! -f "$init_file" ]]; then
   touch "$init_file"
-
-  # Restart waybar
-  killall waybar && waybar
 fi
 
 exit 0
