@@ -61,7 +61,7 @@
     "exec": "~/.scripts/updates-status.sh",
     "return-type": "json",
     "signal": 8,
-    "interval": 600, // 10 minutes
+    "interval": "once",
     "on-click": "ghostty -e ~/.scripts/update.sh",
     "tooltip": true,
     "tooltip-markup": "pango"

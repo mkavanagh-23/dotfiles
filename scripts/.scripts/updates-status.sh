@@ -9,12 +9,6 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 # Set the script vars
 cache_file="/tmp/waybar_updates_cache.json"
 notification_file="/tmp/waybar_updates_notify"
-init_file="/tmp/waybar_updates_init"
-
-# Wait for updatecheck init
-while [ ! -f "$init_file" ]; do
-  sleep 1
-done
 
 if [[ -f "$cache_file" ]]; then
   if [[ ! -f "$notification_file" ]]; then
@@ -29,16 +23,16 @@ if [[ -f "$cache_file" ]]; then
     if (( update_count > 0 )); then
       # Trigger the notification
       if [[ $update_count -eq 1 ]]; then
-        notify-send "󰚰 System Update" "$update_count new update available"
+        notify-send -u low "󰚰 System Update" "$update_count new update available"
       else
-        notify-send "󰚰 System Update" "$update_count new updates available"
+        notify-send -u low "󰚰 System Update" "$update_count new updates available"
       fi
     fi
   fi
   # Return the updated json string
   cat "$cache_file"
 else
-  # Return inactive json string in case of errors with our service
+  # Return inactive json string in case of errors with our cache
   echo '{"text":"","class":"inactive"}'
 fi
 

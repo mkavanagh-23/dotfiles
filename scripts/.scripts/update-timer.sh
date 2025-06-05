@@ -6,7 +6,6 @@
 # Set the script vars
 cache_file="/tmp/waybar_updates_cache.json"
 notification_file="/tmp/waybar_updates_notify"
-init_file="/tmp/waybar_updates_init"
 main_color="#92a2d5"
 aur_color="#90b99f"
 prior_count=0
@@ -76,11 +75,7 @@ if [[ "$update_count" -ne "$prior_count" ]]; then
   if [[ -f "$notification_file" ]]; then
     rm -f "$notification_file"
   fi
-fi
-
-# Mark initialization
-if [[ ! -f "$init_file" ]]; then
-  touch "$init_file"
+  pkill -RTMIN+8 waybar
 fi
 
 exit 0

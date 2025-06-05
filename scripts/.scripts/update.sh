@@ -18,7 +18,6 @@ paru -Syu --review --sudoloop || {
 # Post update script
 if [[ -x "$post_update_script" ]]; then
   "$post_update_script"
-  exit 0
 else
   notify-send -u critical "Updates" "Helper script not found or not executable"
   exit 2
