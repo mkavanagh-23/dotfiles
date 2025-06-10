@@ -34,7 +34,6 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 source $HOME/.secrets/secrets.env
 
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -73,8 +72,6 @@ fi
 alias pcirescan='sudo $HOME/.scripts/pcirescan.sh'
 alias sftp-server='sftp $SERVER_USER@$SERVER_ADDRESS:/downloads'
 alias sftp-jellyfin='sftp $JELLYFIN_USER@$JELLYFIN_ADDRESS'
-alias code-server='sshfs $SERVER_USER@$SERVER_ADDRESS:$HOME/code-files /mnt/code-server'
-alias code-unmount='fusermount3 -u /mnt/code-server'
 alias empty-trash='sudo rm -rf --interactive $HOME/.Trash/*'
 alias esp32serial='screen /dev/ttyUSB0 115200'
 
