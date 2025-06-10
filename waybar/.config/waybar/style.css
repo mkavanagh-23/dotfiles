@@ -39,13 +39,23 @@ tooltip {
   border-style: solid;
 }
 
+
 /* Left Modules */
 
 #workspaces button {
   margin-right: 3px;
   padding: 5px;
-  background: @bgAlpha;
+  background: transparent;
   color: @subtext4;
+}
+
+#workspaces button:hover {
+  box-shadow: none; /* Remove predefined box-shadow */
+  text-shadow: none; /* Remove predefined text-shadow */
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: @gray2;
 }
 
 #workspaces button.active {

@@ -12,7 +12,7 @@
   // Choose the order of the modules
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "custom/updates", "custom/vpn", "network", "battery", "pulseaudio#microphone", "pulseaudio", "backlight", "idle_inhibitor"],
+  "modules-right": ["tray", "custom/updates", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "idle_inhibitor"],
   
   // Modules configuration
   "hyprland/workspaces": {
