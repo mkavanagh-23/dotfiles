@@ -1,0 +1,8 @@
+[Unit]
+Description=Clean paru cache, keeping 1 recent version
+
+[Service]
+Type=oneshot
+ExecStart=%h/.scripts/parucache.sh
+StandardOutput=journal
+StandardError=journal
