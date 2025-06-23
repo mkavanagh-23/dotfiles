@@ -14,6 +14,7 @@
 #workspaces,
 #window,
 #custom-updates,
+#custom-weather,
 #clock,
 #tray,
 #custom-vpn,
@@ -79,6 +80,11 @@ tooltip {
 
 #custom-updates {
   color: @orange;
+  padding-right: 3px;
+}
+
+#custom-weather {
+  color: @green;
   padding-right: 3px;
 }
 

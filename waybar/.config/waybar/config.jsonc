@@ -12,7 +12,7 @@
   // Choose the order of the modules
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "custom/updates", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "idle_inhibitor"],
+  "modules-right": ["tray", "custom/updates", "custom/weather", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "idle_inhibitor"],
   
   // Modules configuration
   "hyprland/workspaces": {
@@ -49,7 +49,10 @@
       "title<vim.*>": " ",
       "title<nvim.*>": " ",
       "title<Yazi.*>": "󰝰 ",
-      "class<Arduino IDE>": " "
+      "class<Arduino IDE>": " ",
+      "class<org.yuzu_emu.yuzu>": "󰟡 ",
+      "class<steam>": " ",
+      "class<gimp>": " "
     }   
   },
   "hyprland/window": {
@@ -63,6 +66,15 @@
     "signal": 8,
     "interval": "once",
     "on-click": "ghostty -e ~/.scripts/update.sh",
+    "tooltip": true,
+    "tooltip-markup": "pango"
+  },
+  "custom/weather": {
+    "format": "{}",
+    "exec": "~/.scripts/weather.sh",
+    "return-type": "json",
+    "signal": 9,
+    "interval": 3600,
     "tooltip": true,
     "tooltip-markup": "pango"
   },
