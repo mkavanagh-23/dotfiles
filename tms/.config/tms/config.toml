@@ -1,0 +1,7 @@
+[[search_dirs]]
+path = "$HOME/Documents/Projects"
+depth = 10
+
+[[search_dirs]]
+path = "$HOME/.dotfiles"
+depth = 10

@@ -6,4 +6,6 @@ rm $shaderconfig
 
 ln -s $HOME/.config/hypr/hyprland.conf.d/shaders/dark.conf $shaderconfig
 
+notify-send "Hyprland" "Blue light filter enabled"
+
 exit 0

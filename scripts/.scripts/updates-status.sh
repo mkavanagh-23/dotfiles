@@ -23,9 +23,9 @@ if [[ -f "$cache_file" ]]; then
     if (( update_count > 0 )); then
       # Trigger the notification
       if [[ $update_count -eq 1 ]]; then
-        notify-send -u low "󰚰 System Update" "$update_count new update available"
+        notify-send -u low -t 5000 "󰚰 System Update" "$update_count new update available"
       else
-        notify-send -u low "󰚰 System Update" "$update_count new updates available"
+        notify-send -u low -t 5000 "󰚰 System Update" "$update_count new updates available"
       fi
     fi
   fi

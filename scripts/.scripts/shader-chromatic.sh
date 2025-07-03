@@ -6,4 +6,6 @@ rm $shaderconfig
 
 ln -s $HOME/.config/hypr/hyprland.conf.d/shaders/chromatic.conf $shaderconfig
 
+notify-send "Hyprland" "Chromatic screen shader enabled"
+
 exit 0
