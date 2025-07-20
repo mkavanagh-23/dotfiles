@@ -84,8 +84,32 @@ tooltip {
 }
 
 #custom-weather {
-  color: @green;
+  color: @fg;
   padding-right: 3px;
+}
+
+#custom-weather.blue {
+  color: @blue;
+}
+
+#custom-weather.purple {
+  color: @purple;
+}
+
+#custom-weather.yellow {
+  color: @yellow;
+}
+
+#custom-weather.orange {
+  color: @orange;
+}
+
+#custom-weather.pink {
+  color: @magenta;
+}
+
+#custom-weather.red {
+  color: @red;
 }
 
 /* Right Modules */

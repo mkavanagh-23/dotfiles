@@ -74,7 +74,8 @@
     "exec": "~/.scripts/weather.sh",
     "return-type": "json",
     "signal": 9,
-    "interval": 3600,
+    "interval": 600,
+    "on-click": "~/.scripts/weather-click.sh",
     "tooltip": true,
     "tooltip-markup": "pango"
   },

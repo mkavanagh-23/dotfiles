@@ -1,0 +1,1 @@
+/home/mattkavs/Documents/Projects/waybar-weather/weather-click.sh
