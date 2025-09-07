@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "dockerls", "docker_compose_language_service", "arduino_language_server", "html", "hyprls", "sqls", "pylsp", "gopls" }
+        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "html", "sqls", "pylsp", "gopls" }
       })
     end
   },
@@ -33,9 +33,7 @@ return {
           { buffer = bufnr, desc = "Get references" })
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover details" })
         vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Disgnostic messages" })
-        vim.diagnostic.config({ virtual_text = false })
-        -- Diagnostic lines between code lines instead of at end
-        vim.diagnostic.config({ virtual_lines = true })
+        vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
         -- Set keymap to toggle inline diagnostics
         vim.keymap.set('n', 'gK', function()
           local new_config = not vim.diagnostic.config().virtual_lines
@@ -69,25 +67,9 @@ return {
         on_attach = on_attach,
         capabilities = capabilities
       })
-      lspconfig.dockerls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-      lspconfig.docker_compose_language_service.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-      lspconfig.arduino_language_server.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
       lspconfig.html.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      })
-      lspconfig.hyprls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
       })
       lspconfig.sqls.setup({
         on_attach = on_attach,

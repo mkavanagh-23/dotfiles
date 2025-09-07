@@ -29,7 +29,7 @@ return {
         },
        completion = {
          autocomplete = false,
-         auto_trigger = true, -- Disable auto-triggering of completion window
+         auto_trigger = false, -- Disable auto-triggering of completion window
        },
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),

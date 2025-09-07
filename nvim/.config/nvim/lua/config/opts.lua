@@ -29,27 +29,3 @@ vim.opt.clipboard = "unnamedplus"
 -- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- Set formatting for HTML and Markdown files
-local toggle_wrap = function()
-  if vim.wo.wrap then
-    vim.wo.wrap = false
-    vim.wo.breakindent = false
-    vim.wo.breakindentopt = ''
-  else
-    vim.wo.wrap = true
-    vim.wo.breakindent = true
-    vim.wo.breakindentopt = 'shift:3'
-  end
-end
-
-vim.api.nvim_set_keymap('n', '<leader>ti', ':lua require"image".clear()<CR>', { noremap = true, silent = true, desc = "Toggle image rendering" })
-
--- And apply it with a keymap on filetype attach
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "markdown" },
-  callback = function()
-    toggle_wrap()
-    vim.keymap.set('n', '<leader>tw', toggle_wrap, { desc = "Toggle wrapping and indentatiton" })
-  end
-})
