@@ -104,8 +104,7 @@ if [ "$TERM" = linux ] && command -v ttyscheme >/dev/null; then
 fi
 
 # Autostart hyprland at login
-if [ "$TERM" != "tmux-256color" ]; then
-  if uwsm check may-start; then
-      exec uwsm start hyprland.desktop
-  fi
+# Check for SSH and TMUX sessions
+if [ -z "$SSH_CONNECTION" ] && [ "$TERM" != "tmux-256color" ]; then
+    source $HOME/.profile
 fi
