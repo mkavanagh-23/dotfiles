@@ -18,6 +18,7 @@
 #clock,
 #tray,
 #custom-vpn,
+#custom-bedroomlights,
 #network,
 #battery,
 #pulseaudio,
@@ -123,6 +124,14 @@ tooltip {
 
 #custom-vpn.connected {
   color: @red;
+}
+
+#custom-bedroomlights {
+  color: @subtext4;
+}
+
+#custom-bedroomlights.lights-on {
+  color: @yellow;
 }
 
 #network {

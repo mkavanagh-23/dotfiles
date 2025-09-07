@@ -12,7 +12,7 @@
   // Choose the order of the modules
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "custom/updates", "custom/weather", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "idle_inhibitor"],
+  "modules-right": ["tray", "custom/updates", "custom/weather", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "custom/bedroomlights", "idle_inhibitor"],
   
   // Modules configuration
   "hyprland/workspaces": {
@@ -97,6 +97,21 @@
     "on-click": "/bin/bash -c '~/.scripts/vpn-connect.sh'",
     "tooltip": true,
   },
+  "custom/bedroomlights": {
+    "exec": "~/.scripts/lights-status.sh",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "on": "󰛨 ",
+      "off": "󰹐 ",
+      "unknown": "󱧣 "
+    },
+    "signal": 7,
+    "on-click": "~/.scripts/lights-toggle.sh",
+    "interval": 30,
+    "exec-on-event": true,
+    "tooltip": true
+  },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     "format-wifi": "{icon}   {signalStrength}%",
@@ -105,7 +120,7 @@
     "format-disconnected": "󰤭 ",
     "format-alt": "[{ifname}] {essid}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "on-click-right": "ghostty -e 'sleep 0.2 && nmtui'",
+    "on-click-right": "nmgui",
     "tooltip": true,
     "tooltip-format": "{ifname} ({ipaddr})\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
   },
