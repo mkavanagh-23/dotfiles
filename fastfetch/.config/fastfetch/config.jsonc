@@ -4,7 +4,6 @@
   	"type": "auto",
   },
   "display": {
-	  "disableLineWrap": "true",
 	  "separator": "  ",
 	  "color": "blue" 
 	  
