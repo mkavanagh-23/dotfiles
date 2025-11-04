@@ -9,6 +9,9 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 
 post_update_script="$HOME/.scripts/update-timer.sh"
 
+# Set the title
+echo -ne "\033]0;System Update\007"
+
 # Run paru interactively
 if paru -Syu --review --sudoloop; then
   # Post update script
