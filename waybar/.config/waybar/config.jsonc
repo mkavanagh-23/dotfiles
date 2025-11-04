@@ -25,6 +25,7 @@
     "window-rewrite": {
       "title<.*youtube.*>": " ",
       "title<.*reddit.*>": " ",
+      "title<.*System Update*>": "󰚰 ",
       "title<.*Picture-in-Picture.*>": " ",
       "class<firefox>": " ",
       "class<zen>": " ",
@@ -52,11 +53,13 @@
       "class<Arduino IDE>": " ",
       "class<org.yuzu_emu.yuzu>": "󰟡 ",
       "class<steam>": " ",
+      "class<thunderbird>": " ",
       "class<gimp>": " "
     }   
   },
   "hyprland/window": {
       "format": "{title}",
+  //    "format": "{class}",
       "separate-outputs": true
   },
   "custom/updates": {
