@@ -16,73 +16,76 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require("lspconfig")
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      -- Define actions on buffer attach to language server
-      local on_attach = function(client, bufnr)
-        -- Set keymaps for lsp actions
-        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename current buffer" })
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = "Take code action" })
-        vim.keymap.set('n', '<leader>fmt', function()
-          vim.lsp.buf.format({ async = true })
-        end, { buffer = bufnr, desc = "Format document" })
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Get definition" })
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr, desc = "Get implementation" })
-        vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references,
-          { buffer = bufnr, desc = "Get references" })
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover details" })
-        vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Disgnostic messages" })
-        vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
-        -- Set keymap to toggle inline diagnostics
-        vim.keymap.set('n', 'gK', function()
-          local new_config = not vim.diagnostic.config().virtual_lines
-          vim.diagnostic.config({ virtual_lines = new_config })
-        end, { desc = 'Toggle diagnostic virtual_lines' })
+      -- === Universal LSP Keybindings (LspAttach replaces on_attach) ===
+      vim.api.nvim_create_autocmd("LspAttach", {
+        desc = "LSP keybindings and setup",
+        callback = function(args)
+          local bufnr = args.buf
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
 
+          -- Core LSP keymaps
+          local map = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+          end
 
-        -- Auto-format on save
-        --vim.api.nvim_create_autocmd("BufWritePre", {
-        --  group = vim.api.nvim_create_augroup("LspAutoFormat", { clear = true }),
-        --  buffer = bufnr,
-        --  callback = function()
-        --    vim.lsp.buf.format({ async = true })
-        --  end,
-        --})
-      end
+          map('n', '<leader>rn', vim.lsp.buf.rename, "Rename symbol")
+          map('n', '<leader>ca', vim.lsp.buf.code_action, "Code action")
+          map('n', '<leader>fmt', function() vim.lsp.buf.format({ async = true }) end, "Format document")
+          map('n', 'gd', vim.lsp.buf.definition, "Go to definition")
+          map('n', 'gi', vim.lsp.buf.implementation, "Go to implementation")
+          map('n', 'gr', require('telescope.builtin').lsp_references, "References")
+          map('n', 'K', vim.lsp.buf.hover, "Hover details")
 
-      lspconfig.lua_ls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
+          vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { buffer = bufnr, desc = "Diagnostics" })
+
+          vim.diagnostic.config({
+            virtual_text = false,
+            virtual_lines = true,
+          })
+
+          map('n', 'gK', function()
+            local new = not vim.diagnostic.config().virtual_lines
+            vim.diagnostic.config({ virtual_lines = new })
+          end, "Toggle diagnostic virtual_lines")
+
+          -- Optional autoformat on save (commented)
+          -- vim.api.nvim_create_autocmd("BufWritePre", {
+          --   group = vim.api.nvim_create_augroup("LspAutoFormat", { clear = true }),
+          --   buffer = bufnr,
+          --   callback = function()
+          --     vim.lsp.buf.format({ async = true })
+          --   end,
+          -- })
+        end
       })
-      lspconfig.bashls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-      lspconfig.clangd.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-      lspconfig.cssls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-      lspconfig.html.setup({
-        on_attach = on_attach,
+
+      -- === New Config API ===
+      local lsp = vim.lsp
+
+      -- Define per-server configs using vim.lsp.config
+      lsp.config.lua_ls = {
         capabilities = capabilities,
-      })
-      lspconfig.sqls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-      lspconfig.pylsp.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-      lspconfig.gopls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
+        settings = {
+          Lua = {
+            diagnostics = { globals = { 'vim' } },
+          },
+        },
+      }
+
+      lsp.config.bashls = { capabilities = capabilities }
+      lsp.config.clangd = { capabilities = capabilities }
+      lsp.config.cssls = { capabilities = capabilities }
+      lsp.config.html = { capabilities = capabilities }
+      lsp.config.sqls = { capabilities = capabilities }
+      lsp.config.pylsp = { capabilities = capabilities }
+      lsp.config.gopls = { capabilities = capabilities }
+
+      -- Enable the servers
+      for name, _ in pairs(lsp.config) do
+        lsp.enable(name)
+      end
     end
   },
   {
@@ -90,20 +93,15 @@ return {
     config = function()
       require('nvim-ts-autotag').setup({
         opts = {
-          -- Defaults
-          enable_close = true,         -- Auto close tags
-          enable_rename = true,        -- Auto rename pairs of tags
-          enable_close_on_slash = true -- Auto close on trailing </
+          enable_close = true,
+          enable_rename = true,
+          enable_close_on_slash = true
         },
-        -- Also override individual filetype configs, these take priority.
-        -- Empty by default, useful if one of the "opts" global settings
-        -- doesn't work well in a specific filetype
       })
     end
   },
   {
     'Bekaboo/dropbar.nvim',
-    -- optional, but required for fuzzy finder support
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       'nvim-telescope/telescope-fzf-native.nvim',
@@ -117,3 +115,4 @@ return {
     end
   },
 }
+
