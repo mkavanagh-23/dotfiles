@@ -53,13 +53,14 @@
       "class<Arduino IDE>": " ",
       "class<org.yuzu_emu.yuzu>": "󰟡 ",
       "class<steam>": " ",
-      "class<thunderbird>": " ",
+      "class<org.mozilla.Thunderbird>": " ",
+      "class<localsend>": " ",
       "class<gimp>": " "
     }   
   },
   "hyprland/window": {
       "format": "{title}",
-  //    "format": "{class}",
+//    "format": "{class}",
       "separate-outputs": true
   },
   "custom/updates": {
