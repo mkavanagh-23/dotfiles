@@ -12,7 +12,7 @@
   // Choose the order of the modules
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "custom/updates", "custom/weather", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "custom/bedroomlights", "idle_inhibitor"],
+  "modules-right": ["tray", "custom/updates", "custom/weather", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "battery", "backlight", "custom/bedroomlights", "idle_inhibitor"],
   
   // Modules configuration
   "hyprland/workspaces": {
@@ -124,7 +124,7 @@
     "format-disconnected": "󰤭 ",
     "format-alt": "[{ifname}] {essid}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "on-click-right": "nmgui",
+    "on-click-right": "iwmenu -l rofi",
     "tooltip": true,
     "tooltip-format": "{ifname} ({ipaddr})\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
   },
