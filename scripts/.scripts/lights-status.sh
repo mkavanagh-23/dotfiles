@@ -9,8 +9,7 @@ iwctl station "$WIFI_INTERFACE" scan >/dev/null 2>&1
 sleep 2
 
 # Check if we are home
-if iwctl station "$WIFI_INTERFACE" get-networks | awk '{print $1}' | grep -Fxq "$WIFI_SSID" \
-   || [[ "$connected_ssid" == "$WIFI_SSID" ]]; then
+if [[ "$connected_ssid" == "$WIFI_SSID" ]]; then
   
   # Function to get entity state
   get_entity_state() {
