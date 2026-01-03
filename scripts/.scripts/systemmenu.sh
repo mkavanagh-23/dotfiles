@@ -22,7 +22,7 @@ options=(
 # Create associative array mapping text to actions
 declare -A actions
 actions["Power"]="$HOME/.scripts/powermenu.sh"
-actions["Network Settings"]="ghostty -e 'sleep 0.2 && nmtui'"
+actions["Network Settings"]='iwmenu -l custom --launcher-command "rofi -dmenu -p SSID"'
 actions["$vpn_option"]="$HOME/.scripts/vpn-connect.sh"
 actions["New Git Project"]="$HOME/.scripts/gh-new-repo.sh"
 actions["Print Screen"]="grimshot --notify savecopy screen"
