@@ -124,7 +124,7 @@
     "format-disconnected": "󰤭 ",
     "format-alt": "[{ifname}] {essid}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "on-click-right": "iwmenu -l rofi",
+    "on-click-right": "~/.scripts/wifi-menu.sh",
     "tooltip": true,
     "tooltip-format": "{ifname} ({ipaddr})\n {bandwidthUpBytes}\n {bandwidthDownBytes}"
   },
