@@ -27,6 +27,9 @@ else
   notify-send -u critical "Updates" "Update cancelled or failed"
 fi
 
+# Update flatpak apps
+flatpak update
+
 # Wait for keypress before exiting
 echo -e "\nPress any key to continue..."
 read -n 1 -s -r
