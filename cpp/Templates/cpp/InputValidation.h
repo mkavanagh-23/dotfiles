@@ -21,7 +21,7 @@ namespace InputValidation {
   //Reset cin from fail state, display error message, and clear the input buffer
   inline void clearInvalid(std::string_view errMsg) {
     std::cin.clear();
-    std::cout << errMsg;
+    std::cerr << errMsg;
     clearBuffer();
   }
 }
