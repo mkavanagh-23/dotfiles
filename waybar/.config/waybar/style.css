@@ -16,6 +16,7 @@
 #custom-updates,
 #custom-weather,
 #clock,
+#mpris,
 #tray,
 #custom-vpn,
 #custom-bedroomlights,
@@ -111,6 +112,14 @@ tooltip {
 
 #custom-weather.red {
   color: @red;
+}
+
+#mpris {
+  color: @magenta;
+}
+
+#mpris.paused {
+  color: @subtext4;
 }
 
 /* Right Modules */

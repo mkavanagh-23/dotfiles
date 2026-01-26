@@ -12,7 +12,7 @@
   // Choose the order of the modules
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "custom/updates", "custom/weather", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "battery", "backlight", "custom/bedroomlights", "idle_inhibitor"],
+  "modules-right": ["custom/updates", "custom/weather", "mpris", "tray", "custom/vpn", "network", "pulseaudio#microphone", "pulseaudio", "battery", "backlight", "custom/bedroomlights", "idle_inhibitor"],
   
   // Modules configuration
   "hyprland/workspaces": {
@@ -91,6 +91,24 @@
     "format": "  {:%H:%M}",
     "format-alt": "{:%A  |  %H:%M  |  %e %B}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "mpris": {
+    "interval": 1,
+    "format": "{player_icon}  {dynamic}",
+    "format-paused": "{status_icon}  {dynamic}",
+    "status-icons": {
+      "playing": "",
+      "paused": "",
+      "stopped": ""
+    },
+    "player-icons": {
+      "firefox": "",
+      "chromium": "󰎆"
+    },
+    "dynamic-order": ["artist", "title"],
+    "title-len": 18,
+    "artist-len": 14,
+    "tooltip-format": "{position} / {length}"
   },
   "tray": {
     "icon-size": 15,
