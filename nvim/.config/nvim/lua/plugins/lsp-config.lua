@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "html", "sqls", "pylsp", "gopls" }
+        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "html", "sqls", "pylsp", "gopls", "powershell_es" }
       })
     end
   },
@@ -63,6 +63,8 @@ return {
 
       -- === New Config API ===
       local lsp = vim.lsp
+      local mason_path = vim.fn.stdpath("data")
+        .. "/mason/packages/powershell-editor-services"
 
       -- Define per-server configs using vim.lsp.config
       lsp.config.lua_ls = {
@@ -81,6 +83,17 @@ return {
       lsp.config.sqls = { capabilities = capabilities }
       lsp.config.pylsp = { capabilities = capabilities }
       lsp.config.gopls = { capabilities = capabilities }
+      lsp.config.powershell_es = {
+        capabilities = capabilities,
+        filetypes = { "ps1", "psm1", "psd1" },
+        cmd = {
+          "pwsh",
+          "-NoLogo",
+          "-NoProfile",
+          "-Command",
+          mason_path .. "/PowerShellEditorServices/Start-EditorServices.ps1",
+        },
+      }
 
       -- Enable the servers
       for name, _ in pairs(lsp.config) do
