@@ -55,7 +55,10 @@
       "class<steam>": " ",
       "class<org.mozilla.Thunderbird>": " ",
       "class<localsend>": " ",
-      "class<gimp>": " "
+      "class<gimp>": " ",
+      "class<virt-manager>": "󰍹 ",
+      "class<com.hypixel.HytaleLauncher>": "󰍳 ",
+      "class<HytaleClient>": "󰍳 "
     }   
   },
   "hyprland/window": {
