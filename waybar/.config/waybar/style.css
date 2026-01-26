@@ -16,6 +16,7 @@
 #custom-updates,
 #custom-weather,
 #clock,
+#mpris,
 #tray,
 #custom-vpn,
 #custom-bedroomlights,
@@ -107,6 +108,14 @@ tooltip {
 
 #custom-weather.pink {
   color: @magenta;
+}
+
+#mpris {
+  color: @magenta;
+}
+
+#mpris.paused {
+  color: @subtext4;
 }
 
 #custom-weather.red {
