@@ -58,7 +58,9 @@
       "class<gimp>": " ",
       "class<virt-manager>": "󰍹 ",
       "class<com.hypixel.HytaleLauncher>": "󰍳 ",
-      "class<HytaleClient>": "󰍳 "
+      "class<HytaleClient>": "󰍳 ",
+      "class<soh.elf>": "󰷠 ",
+      "class<2s2h.elf>": "󰷠 "
     }   
   },
   "hyprland/window": {
