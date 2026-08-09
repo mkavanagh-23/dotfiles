@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "html", "sqls", "pylsp", "gopls", "powershell_es" }
+        ensure_installed = { "lua_ls", "bashls", "clangd", "cssls", "html", "sqls", "pylsp", "gopls", "powershell_es", "qmlls" }
       })
     end
   },
@@ -94,6 +94,7 @@ return {
           mason_path .. "/PowerShellEditorServices/Start-EditorServices.ps1",
         },
       }
+      lsp.config.qmlls = { capabilities = capabilities }
 
       -- Enable the servers
       for name, _ in pairs(lsp.config) do
